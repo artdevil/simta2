@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="page-header">
+        <h2>Topik Tugas Akhir</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span3">
+      <div class="well">
+        <h4>Filter search</h4>
+      </div>
+    </div>
+    <div class="span9">
+      <div class="row">
+        <div class="span9">
+          <form class="form-search">
+            <div class="input-append">
+              <input type="text" class="span8 search-query">
+              <button type="submit" class="btn">Search</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- row -->
+      <div class="row">
+        <div class="span9">
+          <% @topics.each do |f| %>
+            <h4><%= link_to f.title, topic_path(f) %></h4>
+            <p class="subheader">Oleh <%= f.user.name %>, di post pada tanggal <%= f.created_at.strftime('%d %B %Y') %></p>
+            <hr>
+          <% end %>
+        </div>
+      </div><!-- row -->
+      <div class="row">
+        <div class="span9">
+          <p>show <%= @topics.offset_value + 1 %> - <%= @topics.offset_value + @topics.length %> of <%= @topics.total_count %> results</p>
+          <%= paginate @topics %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

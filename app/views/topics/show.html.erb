@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="page-header">
+        <h2><%= @topic.title %></h2>
+        <p>Oleh <%= @topic.user.name %>, di post pada tanggal <%= @topic.created_at.strftime('%d %B %Y') %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <h3>Deskripsi</h3>
+      <%= raw @topic.description %>
+      <% if @topic.attachments.length > 0 %>
+        <h3>Lampiran</h3>
+        <% @topic.attachments.each do |n| %>
+          <%= link_to File.basename(n.attachment_name.to_s), n.attachment_name_url, :target => "_blank" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

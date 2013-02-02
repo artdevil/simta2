@@ -21,6 +21,8 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem "nested_form"
 gem 'less-rails'
+gem 'acts-as-taggable-on'
+gem 'kaminari'
 
 # Gems used only for assets and not required
 # in production environments by default.

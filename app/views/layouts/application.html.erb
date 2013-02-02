@@ -49,7 +49,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="/">Dashboard</a></li>
-              <li><a href="#">Cari judul</a></li>
+              <li><%= link_to "Cari judul", topics_path %></li>
               <li><a href="#">Bantuan</a></li>
               <li><a href="#">About</a></li>
             </ul>
@@ -63,6 +63,9 @@
                   <li><a href="#">Dashboard</a></li>
                   <li><a href="#">Profile</a></li>
                   <li><%= link_to "Private messages", messages_path %></li>
+                  <% if current_user.user_type == "dosen" %>
+                    <li><%= link_to "buat judul baru", new_topic_path %></li>
+                  <% end %>
                   <li class="divider"></li>
                   <li class="nav-header">Setting</li>
                   <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
@@ -94,6 +97,7 @@
       </div><!--/row-->
     </div><!--/container-->
     <%= yield %>
+    <hr>
     <div class="container footer">
       <footer>
         <p>Copyright &copy; IT Telkom 2012</p>

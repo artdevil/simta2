@@ -1,9 +1,9 @@
 Simta2::Application.routes.draw do
-
   mount Ckeditor::Engine => '/ckeditor'
 
   root :to => 'pages#index'
   resources :pages
+  resources :topics
   resources :messages do
     get :reply, :on => :member
     get :user, :on => :collection
