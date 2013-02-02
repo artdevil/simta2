@@ -34,15 +34,58 @@
 	padding-top: 60px;	
 }
 
-
-input[type=text]{
-  width: 100%;
-}
-
-input[type=email], input[type=password]{
-  width: 95%;
-}
-
 html, body{
 	height: 100%;
+}
+
+.navbar .brand{
+  width: 70px;
+  height: 20px;
+}
+
+.span6.login-box{
+  width: 570px !important;
+  #image_logo{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+.profile{
+  img{
+    margin-right: 5px;
+  }
+  a.image_small{
+    padding: 0px;
+  }
+}
+
+.navbar .nav a.notification{
+  height: 18px;
+  background: #ea2a38;
+  color: white;
+  border: solid 1px red;
+}
+
+.navbar .nav a.notification:hover{
+  background: #ea2a38;
+  color: white;
+}
+
+.navbar .nav li.dropdown.open a.notification{
+  background: #ea2a38;
+  color: white;
+}
+
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus{
+  color: #15b5d2;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle{
+  color: #15b5d2;
+}
+
+abbr{
+  color: red;
 }

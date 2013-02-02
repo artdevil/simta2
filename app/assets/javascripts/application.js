@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require twitter/bootstrap
 //= require_tree .
 
@@ -19,4 +20,10 @@ $(document).ready(function(){
   if($(document).find(".alert")){
     setTimeout(function() {$('.alert').alert('close')}, 5000);
   }
+  
+  $("input.date_picker").datepicker({
+    dateFormat: 'dd/mm/yy',
+    changeMonth: true,
+    changeYear: true,
+  });
 });

@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20130201132530) do
     t.string   "user_type"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["keyid"], :name => "index_users_on_keyid", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
