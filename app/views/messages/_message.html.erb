@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="span5">
+      <p>
+        <b>From :</b> <%= f.sender.name %>
+      </p>
+      <p>
+        <b>To :</b> <%= f.recipient.name %>
+      </p>
+      <p>
+        <b>Subject :</b> <%= f.subject %>
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="span5">
+      <%= raw f.body %>
+    </div>
+  </div>
+  <hr>
+  <% if f.attachments.length > 0 %>
+  <div class="row">
+    <div class="span5">
+    <b>Lampiran</b><br/>
+    <% f.attachments.each do |n| %>
+      <%= link_to n.attachment_name, n.attachment_name_url, :target => "_blank" %>
+    <% end %>
+    </div>
+  </div>
+  <% end %>
+  <div class="modal-footer">
+    <%= link_to reply_message_path(f),:remote => true, :class => "btn btn-info" do %>
+      <i class="icon-share"></i> Reply message
+    <% end %>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>

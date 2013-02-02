@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>Subject</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_user.received_messages.each do |f| %>
+      <tr id="inbox_<%= f.id %>" <%= "class=success" if f.message_read? == false %>>
+        <td><%= f.sender.name %></td>
+        <td><%= link_to f.subject, message_path(f, :status => "inbox"), :remote => true, :data => {"toggle" => "modal", "target" => "#myModal" } %></td>
+        <td><%= f.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= link_to "delete", message_path(f), :remote => true, :method => :delete, :confirm => "Apakah anda mau menghapus pesan ini ?"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+</div>

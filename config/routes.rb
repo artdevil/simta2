@@ -1,6 +1,13 @@
 Simta2::Application.routes.draw do
+
+  mount Ckeditor::Engine => '/ckeditor'
+
   root :to => 'pages#index'
   resources :pages
+  resources :messages do
+    get :reply, :on => :member
+    get :user, :on => :collection
+  end
   devise_for :users
   
   ActiveAdmin.routes(self)

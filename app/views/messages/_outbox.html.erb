@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>To</th>
+      <th>Subject</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_user.sent_messages.each do |f| %>
+      <tr>
+        <td><%= f.recipient.name %></td>
+        <td><%= link_to f.subject, message_path(f, :status => "outbox"), :remote => true, :data => {"toggle" => "modal", "target" => "#myModal2" } %></td>
+        <td><%= f.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= link_to "delete", message_path(f), :remote => true, :method => :delete, :confirm => "Apakah anda mau menghapus pesan ini ?"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+</div>

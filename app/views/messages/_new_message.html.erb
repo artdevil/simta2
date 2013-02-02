@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="span12">
+    <%= simple_nested_form_for @message, :html => {:multipart => true}, :url => messages_path do |f| %>
+    <% re = @message.recipient ? "#{User.find(@message.recipient).name}" : "" %>
+      <%= f.input :recipient, :label => "To: ", :input_html => {:value => "#{re}", :data => {:autocomplete_source => user_messages_path}} %>
+      <%= f.input :subject, :label => "Subject: "%>
+      <%= f.input :body, :as => :ckeditor, :label => "body: ", :toolbar => 'Basic' %>
+      <%= f.simple_fields_for :attachments do |n| %>
+        <%= n.input :attachment_name %>
+      <% end %>
+      <p><%= f.link_to_add "Add a attachment", :attachments %></p>
+      <%= f.submit "send message", :class => "btn btn-info"%>
+    <% end %>
+  </div>
+</div>

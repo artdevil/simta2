@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="page-header">
+        <h2>Private Messages</h2>
+      </div>
+    </div>
+  </div><!-- row -->
+  <div class="row">
+    <div class="span12">
+      <div class="tabbable"> <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#inbox" data-toggle="tab" id="messages_count">Inbox (<%= current_user.unread_message_count %> unread)</a></li>
+          <li><a href="#outbox" data-toggle="tab">Outbox</a></li>
+          <li><a href="#new_message" data-toggle="tab" id="new_message_tab">New message</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="inbox">
+            <div class="btn-group pull-right">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Sorted by
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><span class="badge badge-success">&nbsp;</span> unread Message</a></li>
+              </ul>
+            </div>
+            <%= render 'inbox' %>
+          </div>
+          <div class="tab-pane" id="outbox">
+            <%= render 'outbox' %>
+          </div>
+          <div class="tab-pane" id="new_message">
+            <%= render 'new_message' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

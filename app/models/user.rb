@@ -3,13 +3,18 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable, :registerable :recoverable,
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :authentication_keys => [:keyid]
-
+  has_private_messages
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:keyid, :name, :birthday, :gender, :religion,
                   :avatar, :telephone, :user_type
-                  
+  
+  validates :email, :presence => true
+  
   mount_uploader :avatar, AvatarUploader
   # attr_accessible :title, :body
+  
+  scope :user_student, lambda{|params| where("(name LIKE ? OR keyid LIKE ?) AND user_type != 'dosen'", "#{params}%","#{params}%")}
+  scope :user_lecture, lambda{|params| where("(name LIKE ? OR keyid LIKE ?) AND user_type != 'mahasiswa'", "#{params}%","#{params}%")}
 
   protected
   

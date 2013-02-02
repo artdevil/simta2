@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery_nested_form
+//= require rails.validations
+//= require rails.validations.simple_form
 //= require twitter/bootstrap
+//= require ckeditor/init
 //= require_tree .
 
 $(document).ready(function(){

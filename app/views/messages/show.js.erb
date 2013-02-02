@@ -1,0 +1,7 @@
+<% if @status == "inbox" %>
+$('#myModal').html('<%= escape_javascript(render :partial => "message", :locals => {:f => @message}).html_safe %>');
+$('#inbox_<%= @message.id %>').removeClass('success');
+$('#messages_count').html('Inbox (<%= current_user.unread_message_count %> unread)');
+<% else %>
+$('#myModal2').html('<%= escape_javascript(render :partial => "message", :locals => {:f => @message}).html_safe %>');
+<% end %>
