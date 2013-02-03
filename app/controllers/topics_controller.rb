@@ -1,13 +1,17 @@
 class TopicsController < ApplicationController
+  before_filter :authenticate_user!
   def index
+    @tab = "2"
     @topics = Topic.page(params[:page]).per(10)
   end
 
   def show
+    @tab = "2"
     @topic = Topic.find(params[:id])
   end
 
   def new
+    @tab = "2"
     @topic = Topic.new
   end
 
@@ -23,6 +27,7 @@ class TopicsController < ApplicationController
   end
 
   def edit
+    @tab = "2"
     @topic = Topic.find(params[:id])
   end
   

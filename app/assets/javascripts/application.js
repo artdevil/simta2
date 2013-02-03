@@ -17,6 +17,7 @@
 //= require rails.validations.simple_form
 //= require twitter/bootstrap
 //= require ckeditor/init
+//= require ckeditor/config
 //= require_tree .
 
 $(document).ready(function(){

@@ -50,3 +50,41 @@ description = '<p><span style="color: rgb(0, 0, 0); font-family: Arial, Helvetic
 (1..11).each do |i|
   Topic.create(:user_id => @dosen.id.to_i, :title => "#{titles[i]}", :description => "#{description}", :tag_list => "#{meta[i]}")
 end
+# status name
+status_name = {
+  1 => "Belum ada",
+  2 => "Judul diambil",
+  3 => "Dosen sepakat",
+  4 => "Publikasi proposal",
+  5 => "Proposal diterima",
+  6 => "penerbitan SK skripsi",
+  7 => "monitoring skripsi",
+  8 => "Permohonan ujian skripsi",
+  9 => "Verifikasi syarat ujian",
+  10 => "Ujian skripsi",
+  11 => "Hasil ujian",
+  12 => "Acc revisi",
+  13 => "Skripsi selesai"
+}
+
+# status other
+other_name = {
+  1 => "Belum ada",
+  2 => "Tunggu dosen sepakat",
+  3 => "Upload proposal",
+  4 => "Prasyarat SK skripsi",
+  5 => "Penempelan abstrak",
+  6 => "Penerbitan SK skripsi",
+  7 => "Bimbingan skripsi",
+  8 => "Penuhi syarat ujian skripsi",
+  9 => "Menunggu verifikasi syarat ujian",
+  10 => "Ujian skripsi",
+  11 => "Upload Buku + revisi",
+  12 => "Menunggu Acc revisi",
+  13 => "Skripsi selesai"
+}
+
+# status
+(1..13).each do |i|
+  Status.create(:name => "#{status_name[i]}", :other => "#{other_name[i]}")
+end

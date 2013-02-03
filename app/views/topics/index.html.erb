@@ -26,8 +26,15 @@
       <div class="row">
         <div class="span9">
           <% @topics.each do |f| %>
-            <h4><%= link_to f.title, topic_path(f) %></h4>
-            <p class="subheader">Oleh <%= f.user.name %>, di post pada tanggal <%= f.created_at.strftime('%d %B %Y') %></p>
+            <div class="row">
+              <div class="span8">
+                <h4><%= link_to f.title, topic_path(f) %></h4>
+                <p class="subheader">Oleh <%= f.user.name %>, di post pada tanggal <%= f.created_at.strftime('%d %B %Y') %></p>
+              </div>
+              <div class="span1">
+                 	<span class="label label-success">Success</span>
+              </div>
+            </div>
             <hr>
           <% end %>
         </div>
