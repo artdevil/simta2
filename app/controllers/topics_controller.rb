@@ -42,4 +42,8 @@ class TopicsController < ApplicationController
       render 'edit'
     end
   end
+  
+  def tag_topic
+    
+  end
 end

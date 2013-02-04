@@ -24,6 +24,7 @@ gem 'less-rails'
 gem 'acts-as-taggable-on'
 gem 'kaminari'
 gem "haml-rails"
+gem "friendly_id", "~> 4.0.9"
 
 # Gems used only for assets and not required
 # in production environments by default.

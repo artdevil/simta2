@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   has_many :topics
   has_many :notifications
+  has_one :tag, :class_name => "Topic", :foreign_key => "tag_id"
   has_private_messages
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
