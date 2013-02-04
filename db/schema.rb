@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202190500) do
+ActiveRecord::Schema.define(:version => 20130203143601) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -84,6 +84,18 @@ ActiveRecord::Schema.define(:version => 20130202190500) do
   end
 
   add_index "messages", ["ancestry"], :name => "index_messages_on_ancestry"
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.integer  "status_id"
+    t.string   "status_description"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.date     "read_at"
+  end
 
   create_table "statuses", :force => true do |t|
     t.string   "name"

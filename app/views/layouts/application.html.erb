@@ -35,7 +35,6 @@
     <%= favicon_link_tag 'favicon.png', :rel => 'shortcut icon' %>
   </head>
   <body>
-
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -75,11 +74,8 @@
             </ul>
             <ul class="nav pull-right profile">
               <li><%= image_tag current_user.avatar_url(:thumb) %></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle notification" data-toggle="dropdown">100</a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                </ul>
+              <li class="dropdown" id="number_notification">
+                <%= render 'layouts/notification' %>
               </li>
             </ul>
             <% else %>
@@ -107,6 +103,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-
+    <div id="blink_div">
+      <%= render 'layouts/blink' %>
+    </div>
   </body>
 </html>

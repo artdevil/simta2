@@ -66,18 +66,27 @@ html, body{
 
 .navbar .nav a.notification{
   height: 18px;
-  background: #ea2a38;
+  border: solid 1px #15b5d2;
+  background: #15b5d2;
   color: white;
-  border: solid 1px red;
 }
 
 .navbar .nav a.notification:hover{
-  background: #ea2a38;
+  background: #15b5d2;
   color: white;
 }
 
-.navbar .nav li.dropdown.open a.notification{
+
+li .success{
+  background: #dff0d8;
+}
+.navbar .nav a.notification.active{
   background: #ea2a38;
+  border: solid 1px red;
+}
+
+.navbar .nav li.dropdown.open a.notification{
+  background: #15b5d2;
   color: white;
 }
 

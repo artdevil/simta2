@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
+  
   def index
     @message = Message.new
   end
@@ -14,15 +15,18 @@ class MessagesController < ApplicationController
   end
   
   def create
-     params["message"]["recipient"] = User.find_by_name(params["message"]["recipient"])
-      @message = Message.new params["message"]
-      @message.sender = current_user
-      if @message.save
+    params["message"]["recipient"] = User.find_by_name(params["message"]["recipient"])
+    @message = Message.new params["message"]
+    @message.sender = current_user
+    if @message.save
+      notification = create_notification(@message.sender_id, @message.recipient_id, @message.id, @message.class.name, Status.find(1).id, '1 pesan private messages')
+      if notification
         flash[:success] = "Pesan telah terkirim.";
         redirect_to messages_path
-      else
-        redirect_to messages_path, :flash => { :error => "pesan gagal dikirim." }
       end
+    else
+      redirect_to messages_path, :flash => { :error => "pesan gagal dikirim." }
+    end
   end
   
   def show

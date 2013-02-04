@@ -1,0 +1,4 @@
+$('#notification_pages_div').html('<%= escape_javascript(render :partial => "list", :locals => {:f => @notifications}).html_safe %>');
+$('#notification_div').html('<%= notification_read %>');
+$('.dropdown-toggle.notification.ajax.active').removeClass('active');
+$('#blink_div').html('<%= escape_javascript(render "layouts/blink").html_safe %>');

@@ -3,6 +3,9 @@ Simta2::Application.routes.draw do
 
   root :to => 'pages#index'
   resources :pages
+  resources :notifications do
+    get :getnotification, :on => :collection
+  end
   resources :topics
   resources :messages do
     get :reply, :on => :member

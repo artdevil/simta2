@@ -1,0 +1,14 @@
+<% f.each do |n| %>
+  <% if n.notifiable_type.to_s == "Message" %>
+    <li <%= 'class=success' if n.read_at == nil %>>
+      <%= link_to n.status_description, n.notifiable_type.pluralize.downcase %>
+    </li>
+    <% n.update_column(:read_at, Time.now) %>
+  <% end %>
+<% end %>
+<li class="divider"></li>
+<li>
+  <%= link_to notifications_path do %>
+    <b>Lihat semua notifikasi</b>
+  <% end %>
+</li>

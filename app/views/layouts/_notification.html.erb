@@ -1,0 +1,12 @@
+<% if notification_read > 0 %>
+  <%= link_to getnotification_notifications_path, :remote => true, :class => "dropdown-toggle notification ajax active", :data => {:toggle => "dropdown"} do %>
+    <p id="notification_div"><%= notification_read %></p>
+  <% end %>
+<% else %>
+  <%= link_to getnotification_notifications_path, :remote => true, :class => "dropdown-toggle notification ajax", :data => {:toggle => "dropdown"} do %>
+    <p id="notification_div"><%= notification_read %></p>
+  <% end %>
+<% end %>
+<ul class="dropdown-menu" id="notification_pages_div">
+  
+</ul>

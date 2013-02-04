@@ -1,5 +1,7 @@
 class TopicsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
+  
   def index
     @tab = "2"
     @topics = Topic.page(params[:page]).per(10)

@@ -30,4 +30,18 @@ $(document).ready(function(){
     changeMonth: true,
     changeYear: true,
   });
+  
+  $('.ajax').click(function(){
+    $('#notification_pages_div').html('<li><a href="#">Loading...</a></li>');
+  });
+  
+  if ($(document).length > 0) {
+    setTimeout(updateComments, 10000);
+  }
 });
+
+function updateComments() {
+  $.getScript('/notifications/1.js');
+  setTimeout(updateComments, 10000);
+}
+

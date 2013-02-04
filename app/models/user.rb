@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :topics
+  has_many :notifications
   has_private_messages
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
