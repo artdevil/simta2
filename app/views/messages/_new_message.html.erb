@@ -1,6 +1,6 @@
 <div class="row">
   <div class="span12">
-    <%= simple_nested_form_for @message, :html => {:multipart => true}, :url => messages_path do |f| %>
+    <%= simple_nested_form_for @message, :validate => true, :html => {:multipart => true} do |f| %>
     <% re = @message.recipient ? "#{User.find(@message.recipient).name}" : "" %>
       <%= f.input :recipient, :label => "To: ", :input_html => {:value => "#{re}", :data => {:autocomplete_source => user_messages_path}} %>
       <%= f.input :subject, :label => "Subject: "%>

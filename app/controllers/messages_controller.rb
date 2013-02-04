@@ -46,4 +46,19 @@ class MessagesController < ApplicationController
       format.js
     end
   end
+  
+  def destroy
+    @status = params[:status]
+    if @status == "inbox"
+      @message = current_user.received_messages.find(params[:id])
+    elsif @status == "outbox"
+      @message = current_user.sent_messages.find(params[:id])
+    end
+    
+    if @message.mark_deleted(current_user)
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
 end

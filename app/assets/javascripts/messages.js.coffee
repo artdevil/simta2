@@ -5,3 +5,6 @@
 jQuery ->
   $('#message_recipient').autocomplete
     source: $('#message_recipient').data('autocomplete-source')
+jQuery -> 
+  $("#new_message").click ->
+    $("form[data-validate]").validate()

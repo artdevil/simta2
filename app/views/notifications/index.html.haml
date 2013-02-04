@@ -1,0 +1,19 @@
+.container
+  .row
+    .span12
+      .page-header
+        %h1 Notification
+  .row
+    .span12
+      - @notifications.each do |f|
+        %p
+          = link_to f.status_description, f.notifiable_type.pluralize.downcase
+          dari 
+          = link_to f.sender.name, user_profile_page_path(f.sender)
+        %hr
+  .row
+    .span12
+      %p
+        = "show #{@notifications.offset_value + 1} - #{@notifications.offset_value + @notifications.length} of #{@notifications.total_count} results"
+      = paginate @notifications
+            

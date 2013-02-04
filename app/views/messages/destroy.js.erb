@@ -1,0 +1,6 @@
+<% if @status == "inbox" %>
+  $('#inbox_<%= @message.id %>').remove();
+  $('#messages_count').html('Inbox (<%= current_user.unread_message_count %> unread)');
+<% elsif @status == "outbox" %>
+  $('#outbox_<%= @message.id %>').remove();
+<% end %>

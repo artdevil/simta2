@@ -4,4 +4,8 @@ class PagesController < ApplicationController
   def index
     @tab = "1"
   end
+  
+  def user_profile
+    
+  end
 end

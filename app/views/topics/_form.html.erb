@@ -1,9 +1,9 @@
-<%= simple_nested_form_for @topic, :html => {:multipart => true} do |f| %>
+<%= simple_nested_form_for @topic, :validate => true, :html => {:multipart => true} do |f| %>
   <%= f.input :title, :label => "Judul", :autofocus => true %>
   <%= f.input :tag_list, :label => "tag (pisahakan dengan koma)" %>
   <%= f.input :description, :label => "Deskripsi", :as => :ckeditor %>
-  <%= f.simple_fields_for :attachments do |n| %>
-    <%= n.input :attachment_name %>
+  <%= f.fields_for :attachments do |a| %>
+    <%= render :partial => 'shared/attachment', :locals => {:n => a} %>
   <% end %>
   <p><%= f.link_to_add "Add a attachment", :attachments %></p>
   <%= f.submit "Submit", :class => "btn btn-info"%>

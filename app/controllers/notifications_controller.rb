@@ -9,7 +9,7 @@ class NotificationsController < ApplicationController
   end
   
   def index
-    
+    @notifications = Notification.notification_get(current_user.id).order("created_at DESC").page(params[:page]).per(10)
   end
   
   def getnumber

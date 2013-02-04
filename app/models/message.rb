@@ -8,6 +8,7 @@ class Message < ActiveRecord::Base
   # The :to accessor is used by the scaffolding,
   # uncomment it if using it or you can remove it if not
   #attr_accessor :to
+  validates_presence_of :subject, :recipient 
   accepts_nested_attributes_for :attachments, :reject_if => proc { |attributes| attributes[:attachment_name].blank? }, allow_destroy: true
   accepts_nested_attributes_for :notifications, allow_destroy: true
 end

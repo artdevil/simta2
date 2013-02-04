@@ -8,11 +8,11 @@
   </thead>
   <tbody>
     <% current_user.sent_messages.each do |f| %>
-      <tr>
+      <tr id="outbox_<%= f.id %>">
         <td><%= f.recipient.name %></td>
         <td><%= link_to f.subject, message_path(f, :status => "outbox"), :remote => true, :data => {"toggle" => "modal", "target" => "#myModal2" } %></td>
         <td><%= f.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-        <td><%= link_to "delete", message_path(f), :remote => true, :method => :delete, :confirm => "Apakah anda mau menghapus pesan ini ?"%></td>
+        <td><%= link_to "delete", message_path(f, :status => "outbox"), :remote => true, :method => :delete, :confirm => "Apakah anda mau menghapus pesan ini ?"%></td>
       </tr>
     <% end %>
   </tbody>

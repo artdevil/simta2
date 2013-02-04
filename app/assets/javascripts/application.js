@@ -15,6 +15,7 @@
 //= require jquery_nested_form
 //= require rails.validations
 //= require rails.validations.simple_form
+//= require rails.validations.nested_form
 //= require twitter/bootstrap
 //= require ckeditor/init
 //= require ckeditor/config
@@ -38,7 +39,13 @@ $(document).ready(function(){
   if ($(document).length > 0) {
     setTimeout(updateComments, 10000);
   }
+  
+  $('form').on('nested:fieldAdded', function(event) {
+    $(event.target).find(':input').enableClientSideValidations();
+  });
+  
 });
+
 
 function updateComments() {
   $.getScript('/notifications/1.js');

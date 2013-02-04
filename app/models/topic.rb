@@ -7,5 +7,6 @@ class Topic < ActiveRecord::Base
   attr_accessible :description, :tag_list, :title, :user_id, :attachments_attributes
   accepts_nested_attributes_for :attachments, :reject_if => proc { |attributes| attributes[:attachment_name].blank? }, allow_destroy: true
   accepts_nested_attributes_for :notifications, allow_destroy: true
+  validates_presence_of :title
   scope :user_writer, lambda{|params| where(:user_id => params)}
 end
