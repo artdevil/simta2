@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204120209) do
+ActiveRecord::Schema.define(:version => 20130204153351) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -126,11 +126,12 @@ ActiveRecord::Schema.define(:version => 20130204120209) do
     t.string   "title"
     t.text     "description"
     t.string   "tag_list"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "tag_id"
     t.string   "confirmation"
     t.string   "slug"
+    t.integer  "status_id",    :default => 1, :null => false
   end
 
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true

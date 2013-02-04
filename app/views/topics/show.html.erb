@@ -19,4 +19,28 @@
       <% end %>
     </div>
   </div>
+  <hr>
+  <div class="row">
+    <div class="span12">
+      <% if can? :tag_topic, Topic %>
+        <% if @topic.tag_id != nil %>
+          <% if @topic.tag_id == current_user.id %>
+            <%= link_to "anda telah mengambil judul ini", "#", :class => "btn btn-info disabled" %>
+          <% else %>
+            <% if find_no_topic_user %>
+              <%= link_to "Anda sudah punya topik TA", "#", :class => "btn btn-info disabled" %>
+            <% else %>
+              <%= link_to "judul ini telah diambil", "#", :class => "btn btn-info disabled" %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% if find_topic_user %>
+            <%= link_to "Anda sudah punya topik TA", "#", :class => "btn btn-info disabled" %>
+          <% else %>
+            <%= link_to "ambil sebagai judul TA", tag_topic_topic_path(@topic), :class => "btn btn-info" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

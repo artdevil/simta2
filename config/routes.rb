@@ -8,7 +8,9 @@ Simta2::Application.routes.draw do
   resources :notifications do
     get :getnotification, :on => :collection
   end
-  resources :topics
+  resources :topics do
+    get :tag_topic, :on => :member
+  end
   resources :messages do
     get :reply, :on => :member
     get :user, :on => :collection

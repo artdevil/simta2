@@ -52,7 +52,7 @@ description = '<p><span style="color: rgb(0, 0, 0); font-family: Arial, Helvetic
 end
 # status name
 status_name = {
-  1 => "Belum ada",
+  1 => "judul belum diambil",
   2 => "Judul diambil",
   3 => "Dosen sepakat",
   4 => "Publikasi proposal",

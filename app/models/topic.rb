@@ -2,6 +2,7 @@ class Topic < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
   belongs_to :user
+  belongs_to :status
   # belongs_to :user_name, :class_name => "User", :foreign_key => "user_id"
   acts_as_taggable
   has_many :notifications, :as => :notifiable

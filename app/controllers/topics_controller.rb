@@ -44,6 +44,16 @@ class TopicsController < ApplicationController
   end
   
   def tag_topic
-    
+    @topic = Topic.find(params[:id])
+    if @topic.update_column(:tag_id, current_user.id)
+      notification = create_notification(@topic.tag_id, @topic.user_id, @topic.id, @topic.class.name, Status.find(2).id, '1 pesan permintaan persetujuan topik TA')
+      if notification
+        flash[:success] = "topik berhasil di ambil. Menunggu konfirmasi dari dosen"
+        redirect_to root_path
+      end
+    else
+      redirect_to @topic, :flash => { :error => "topic tidak bisa diambil." }
+    end
   end
+  
 end

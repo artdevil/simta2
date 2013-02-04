@@ -1,0 +1,5 @@
+.container
+  - if current_user.user_type == "dosen"
+    = render "dosen_dashboard"
+  - elsif current_user.user_type == "mahasiswa"
+    = render "mahasiswa_dashboard"

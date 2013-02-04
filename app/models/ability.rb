@@ -5,10 +5,13 @@ class Ability
     if user.user_type == "mahasiswa"
       can :read, Topic
       cannot :create, Topic
+      cannot :update, Topic
+      can :tag_topic, Topic
     end
     
     if user.user_type == "dosen"
       can :manage, Topic, :user_id => user.id
+      cannot :tag_topic, Topic
     end
     # Define abilities for the passed in user here. For example:
     #

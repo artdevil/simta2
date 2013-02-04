@@ -1,10 +1,12 @@
 <% f.each do |n| %>
+  <li <%= 'class=success' if n.read_at == nil %>>
   <% if n.notifiable_type.to_s == "Message" %>
-    <li <%= 'class=success' if n.read_at == nil %>>
-      <%= link_to n.status_description, n.notifiable_type.pluralize.downcase %>
-    </li>
-    <% n.update_column(:read_at, Time.now) %>
+    <%= link_to n.status_description, n.notifiable_type.pluralize.downcase %>
+  <% elsif n.notifiable_type.to_s == "Topic" %>
+    <%= link_to n.status_description, root_path %>
   <% end %>
+  </li>
+  <% n.update_column(:read_at, Time.now) %>
 <% end %>
 <li class="divider"></li>
 <li>
