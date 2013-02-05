@@ -1,0 +1,25 @@
+.span5.dashboard-element
+  .navbar
+    .navbar-inner.custom
+      .brand-custom Info proposal
+      %ul.nav.pull-right
+        %li.dropdown
+          %a.dropdown-toggle{:href => "#","data-toggle" => "dropdown"}
+            %i.icon-cog
+          %ul.dropdown-menu
+            %li
+              = link_to "kirim proposal", new_proposal_path
+            %li
+              = link_to "kirim pesan ke dosen", messages_path
+  .dashboard-inner
+    %p
+      %b Judul :
+      = user.topic.title
+    %p
+      %b Pembimbing proposal :
+      = user.lecture.name
+    %p
+      %b progress proposal
+    .progress.progress-success
+      .bar{:style => "width : #{user.progress}%"}
+        = "#{user.progress}%"

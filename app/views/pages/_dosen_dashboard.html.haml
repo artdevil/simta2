@@ -1,19 +1,45 @@
 .row
-  .span4
+  .span5.dashboard-element
     .navbar
-      .navbar-inner
-        .brand-custom Permintaan
-        %ul.nav.pull-right
-          %li
-            %a.btn.btn-navbar-custom
-              .icon-pencil
-              Create
-  .span8
+      .navbar-inner.custom
+        .brand-custom Permintaan konfirmasi judul TA
+    .dashboard-inner
+      %table.table
+        - Topic.pending_request(current_user).each do |f|
+          %tr{:id => "confirm_#{f.id}"}
+            %td= link_to f.title, f
+            %td= link_to f.tag.name, "#", :class => "pop-over", :rel => "popover", "data-content" => "#{link_to 'lihat profile',user_profile_page_path(f.tag)} <br> #{link_to 'kirim pesan', messages_path }"
+            %td
+              %p{:style => "width: 70px;"}
+                = link_to "ya", approve_topic_path(f), :remote => true, :confirm => "apa anda yakin menerima konfirmasi ini ?", :class => "btn btn-primary btn-mini" 
+                %a.btn.btn-danger.btn-mini tidak
+  .span7.dashboard-element
     .navbar
-      .navbar-inner
+      .navbar-inner.custom
         .brand-custom Judul TA yang diajukan
         %ul.nav.pull-right
           %li
-            %a.btn.btn-navbar-custom
+            %a.btn.btn-navbar-custom{:href => "/topics/new"}
               .icon-pencil
               Create
+    .dashboard-inner
+      %table.table
+        - current_user.topics.each do |f|
+          %tr
+            %td= link_to f.title, f
+            %td= label_create f
+            %td
+              %p{:style => "width: 30px;"}
+                = link_to edit_topic_path(f) do
+                  %i.icon-edit.tool-tip{:title => "edit", :rel => "tooltip"}
+                = link_to topic_path(f), :method => :delete, :confirm => "apa anda yakin ?" do
+                  %i.icon-remove.tool-tip{:title => "remove", :rel => "tooltip"}
+.row
+  .span5.dashboard-element
+    .navbar
+      .navbar-inner.custom
+        .brand-custom bimbingan proposal
+  .span7.dashboard-element
+    .navbar
+      .navbar-inner.custom
+        .brand-custom tes

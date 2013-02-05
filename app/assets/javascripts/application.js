@@ -12,14 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
+//= require twitter/bootstrap
 //= require jquery_nested_form
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require rails.validations.nested_form
-//= require twitter/bootstrap
 //= require ckeditor/init
 //= require ckeditor/config
-//= require_tree .
+//= require messages
 
 $(document).ready(function(){
   if($(document).find(".alert")){
@@ -44,11 +45,19 @@ $(document).ready(function(){
     $(event.target).find(':input').enableClientSideValidations();
   });
   
+  $('.tool-tip').tooltip({
+    placement: 'bottom'
+  });
+  $('.pop-over').popover({
+    html: true
+  });
 });
 
 
 function updateComments() {
-  $.getScript('/notifications/1.js');
-  setTimeout(updateComments, 10000);
+  if($('#number_notification').hasClass('open') == false){
+    $.getScript('/notifications/1.js');
+  }
+  setTimeout(updateComments, 10000); 
 }
 

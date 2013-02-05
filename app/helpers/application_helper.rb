@@ -22,7 +22,7 @@ module ApplicationHelper
     status = topic.status_id
     if status == 1
       class_status = "label label-success"
-    elsif status == 2
+    elsif status == 2 or status == 3
       class_status = "label label-important"
     end
     return content_tag(:span, topic.status.name, :class => class_status)

@@ -10,11 +10,13 @@ Simta2::Application.routes.draw do
   end
   resources :topics do
     get :tag_topic, :on => :member
+    get :approve, :on => :member
   end
   resources :messages do
     get :reply, :on => :member
     get :user, :on => :collection
   end
+  resources :proposals
   devise_for :users
   
   ActiveAdmin.routes(self)

@@ -1,0 +1,16 @@
+.span7.dashboard-element
+  .navbar
+    .navbar-inner.custom
+      .brand-custom Proposal yang diajukan
+      %ul.nav.pull-right
+        %li
+          %a.btn.btn-navbar-custom{:href => "/proposals/new"}
+            .icon-pencil
+            Create
+  .dashboard-inner
+    %table.table
+      - if user.proposal_files.length > 0
+      -else
+        %tr
+          %td belum ada proposal yang di upload
+    

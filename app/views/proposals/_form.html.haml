@@ -1,0 +1,4 @@
+= @proposal_file.student_id
+= @proposal_file.proposal.lecture.name
+= simple_form_for @proposal_file, :url => proposals_path, :validate => true do |f|
+  = f.input :title

@@ -1,0 +1,6 @@
+- if !current_user.student_proposal.nil?
+- user = current_user.student_proposal
+  .row
+    = render :partial => 'mahasiswa_dashboard/proposal_navbar', :locals => {:user => user}
+    = render :partial => 'mahasiswa_dashboard/proposal_index', :locals => {:user => user}
+          

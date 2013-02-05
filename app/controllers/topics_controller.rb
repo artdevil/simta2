@@ -56,4 +56,19 @@ class TopicsController < ApplicationController
     end
   end
   
+  def approve
+    @topic = current_user.topics.find(params[:id])
+    if @topic.update_attributes(:confirmation => "true", :status_id => 3)
+      proposal = Proposal.new(:student_id => @topic.tag_id, :lecture_id => @topic.user_id, :topic_id => @topic.id)
+      if proposal.save
+        notification = create_notification(@topic.user_id,@topic.tag_id, @topic.id, @topic.class.name, Status.find(3).id, 'Permintaan TA anda disetujui silahkan upload proposal')
+        if notification
+           respond_to do |format|
+              format.js
+            end
+        end
+      end
+    end
+  end
+  
 end
