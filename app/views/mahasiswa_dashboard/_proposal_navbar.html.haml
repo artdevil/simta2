@@ -8,7 +8,7 @@
             %i.icon-cog
           %ul.dropdown-menu
             %li
-              = link_to "kirim proposal", new_proposal_path
+              = link_to "kirim proposal", new_proposal_path(:create => current_user.user_type, :proposal => user.id)
             %li
               = link_to "kirim pesan ke dosen", messages_path
   .dashboard-inner

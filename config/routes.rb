@@ -16,7 +16,9 @@ Simta2::Application.routes.draw do
     get :reply, :on => :member
     get :user, :on => :collection
   end
-  resources :proposals
+  resources :proposals do
+    get :todo, :on => :member
+  end
   devise_for :users
   
   ActiveAdmin.routes(self)

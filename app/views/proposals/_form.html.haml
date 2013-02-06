@@ -1,4 +1,12 @@
-= @proposal_file.student_id
-= @proposal_file.proposal.lecture.name
-= simple_form_for @proposal_file, :url => proposals_path, :validate => true do |f|
+= simple_nested_form_for @todo_proposal, :html => {:multipart => true}, :url => proposals_path, :validate => true do |f|
+  = hidden_field_tag 'create', @create
   = f.input :title
+  = f.input :lecture_id, :as => :hidden
+  = f.input :student_id, :as => :hidden
+  = f.input :create_id, :as => :hidden
+  = f.input :description, :as => :ckeditor, :label => "note: ", :toolbar => 'Basic'
+  = f.fields_for :attachments do |a|
+    = render :partial => 'shared/attachment', :locals => {:n => a}
+  %p
+    = f.link_to_add "Add a attachment", :attachments
+  = f.submit "create", :class => "btn btn-info"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205164155) do
+ActiveRecord::Schema.define(:version => 20130206073722) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -97,16 +97,6 @@ ActiveRecord::Schema.define(:version => 20130205164155) do
     t.date     "read_at"
   end
 
-  create_table "proposal_files", :force => true do |t|
-    t.integer  "proposal_id"
-    t.integer  "student_id"
-    t.string   "title"
-    t.string   "file"
-    t.text     "note"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "proposals", :force => true do |t|
     t.integer  "student_id"
     t.integer  "lecture_id"
@@ -139,6 +129,21 @@ ActiveRecord::Schema.define(:version => 20130205164155) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "todo_proposals", :force => true do |t|
+    t.integer  "proposal_id"
+    t.integer  "student_id"
+    t.integer  "lecture_id"
+    t.integer  "create_id"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "done",        :default => false, :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.string   "slug"
+  end
+
+  add_index "todo_proposals", ["slug"], :name => "index_todo_proposals_on_slug", :unique => true
 
   create_table "topics", :force => true do |t|
     t.integer  "user_id"

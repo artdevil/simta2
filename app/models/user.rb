@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   has_one :tag, :class_name => "Topic", :foreign_key => "tag_id"
   has_many :lecture_proposal, :class_name => "Proposal", :foreign_key => "lecture_id"
   has_one :student_proposal, :class_name => "Proposal", :foreign_key => "student_id"
-  has_many :student_proposal_file, :class_name => "ProposalFile", :foreign_key => "student_id"
+  has_many :student_todo_proposals, :class_name => "TodoProposal", :foreign_key => "student_id"
+  has_many :lecture_todo_proposals, :class_name => "TodoProposal", :foreign_key => "lecture_id"
   has_private_messages
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
