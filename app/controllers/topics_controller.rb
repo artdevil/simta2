@@ -45,7 +45,7 @@ class TopicsController < ApplicationController
   
   def tag_topic
     @topic = Topic.find(params[:id])
-    if @topic.update_column(:tag_id, current_user.id)
+    if @topic.update_attributes(:tag_id => current_user.id, :status_id => 2)
       notification = create_notification(@topic.tag_id, @topic.user_id, @topic.id, @topic.class.name, Status.find(2).id, '1 pesan permintaan persetujuan topik TA')
       if notification
         flash[:success] = "topik berhasil di ambil. Menunggu konfirmasi dari dosen"

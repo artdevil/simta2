@@ -5,7 +5,7 @@
         .brand-custom Permintaan konfirmasi judul TA
     .dashboard-inner
       %table.table
-        - Topic.pending_request(current_user).each do |f|
+        - Topic.pending_request(current_user.id).each do |f|
           %tr{:id => "confirm_#{f.id}"}
             %td= link_to f.title, f
             %td= link_to f.tag.name, "#", :class => "pop-over", :rel => "popover", "data-content" => "#{link_to 'lihat profile',user_profile_page_path(f.tag)} <br> #{link_to 'kirim pesan', messages_path }"
