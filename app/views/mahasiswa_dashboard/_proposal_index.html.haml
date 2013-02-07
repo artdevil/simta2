@@ -4,7 +4,7 @@
       .brand-custom To dos proposal
       %ul.nav.pull-right
         %li
-          %a.btn.btn-navbar-custom{:href => "/proposals/new?create=#{current_user.user_type}"}
+          %a.btn.btn-navbar-custom{:href => "/proposals/new?create=#{current_user.user_type}&proposal=#{user.id}"}
             .icon-pencil
             Create
   .dashboard-inner

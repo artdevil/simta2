@@ -1,0 +1,17 @@
+.row
+  .span1
+    &nbsp;
+  .span11
+    .media
+      %a.pull-left.image_media
+        = image_tag f.user.avatar_url
+      .media-body
+        %h5.media-heading= "#{f.commentable.create_todo_proposal.name}, says: "
+        %p= raw f.comment
+        - if f.attachments.length > 0
+          %b{:style => "color: #9e9e9e;"} lampiran
+          %br
+          - f.attachments.each do |n|
+            = link_to File.basename(n.attachment_name.to_s), n.attachment_name_url, :target => "_blank"
+            %br
+    %hr{:style => "border-top: solid #9e9e9e;"}

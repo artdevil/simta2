@@ -9,6 +9,17 @@ class ProposalsController < ApplicationController
     @todo_proposal = TodoProposal.find(params[:id])
   end
   
+  def comment
+    @comment = Comment.new(params[:comment])
+    @comment.user_id = current_user.id
+    if @comment.save
+      respond_to do |format|
+        format.html { redirect_to @comment.commentable, :flash => {:success => "komentar berhasil dimasukkan"} }
+        format.js
+      end
+    end
+  end
+  
   def create
     @todo_proposal = current_user.student_proposal.todo_proposals.new(params[:todo_proposal])
     if @todo_proposal.save

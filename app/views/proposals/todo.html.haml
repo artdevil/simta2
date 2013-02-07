@@ -1,5 +1,28 @@
-.row
-  .span1
-  .span11
-    .page-header
-      %h1
+.container
+  .row
+    .span12
+      .page-header
+        %h1= @todo_proposal.title
+        %small
+          = "Dipost pada tanggal #{@todo_proposal.created_at.strftime('%d %B %Y')} oleh #{@todo_proposal.create_todo_proposal.name}"
+  .row
+    .span12
+      .media
+        %a.pull-left.image_media
+          = image_tag @todo_proposal.create_todo_proposal.avatar_url
+        .media-body
+          %h5.media-heading= "#{@todo_proposal.create_todo_proposal.name}, says: "
+          %p= raw @todo_proposal.description
+          - if @todo_proposal.attachments.length > 0
+            %b{:style => "color: #9e9e9e;"} lampiran
+            %br
+            - @todo_proposal.attachments.each do |f|
+              = link_to File.basename(f.attachment_name.to_s), f.attachment_name_url, :target => "_blank"
+              %br
+  %hr{:style => "border-top: solid #15b5d2;"}
+  #comment_todo
+    - if @todo_proposal.comments.length > 0
+      - @todo_proposal.comments.each do |f|
+        = render :partial => "comment", :locals => {:f => f}
+  = render :partial => "todo_form_comment", :locals => {:f => @todo_proposal}
+        

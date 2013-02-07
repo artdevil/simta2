@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require jquery.ui.all
 //= require twitter/bootstrap
 //= require jquery_nested_form
@@ -35,6 +36,10 @@ $(document).ready(function(){
   
   $('.ajax').click(function(){
     $('#notification_pages_div').html('<li><a href="#">Loading...</a></li>');
+  });
+  
+  $('.btn.btn-info.ajax_button').click(function(){
+    $(this).button('loading');
   });
   
   if ($(document).length > 0) {

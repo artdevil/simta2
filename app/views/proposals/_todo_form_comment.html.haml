@@ -1,0 +1,13 @@
+.row
+  .span12
+    %h4 Tambah komentar
+    = simple_nested_form_for f.comments.build, :url => comment_proposals_path, :remote => true, :validate => true, :html => {:multipart => true} do |f|
+      = f.input :commentable_type, :as => :hidden
+      = f.input :commentable_id, :as => :hidden
+      = f.input :comment, :as => :ckeditor, :label => false
+      = f.fields_for :attachments do |a|
+        = render :partial => 'shared/attachment', :locals => {:n => a}
+      %p
+        = f.link_to_add "Add a attachment", :attachments
+      #action-button
+        = f.submit "kirim komentar", :class => "btn btn-info ajax_button", "data-loading-text" => "Loading..."

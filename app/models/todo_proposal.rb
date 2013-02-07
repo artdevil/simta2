@@ -2,6 +2,7 @@ class TodoProposal < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
   has_many :attachments, :as => :attachmentable
+  has_many :comments, :as => :commentable
   belongs_to :proposal
   belongs_to :lecture_todo_proposal, :class_name => "User", :foreign_key => "lecture_id"
   belongs_to :student_todo_proposal, :class_name => "User", :foreign_key => "student_id"

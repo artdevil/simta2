@@ -14,5 +14,5 @@ class Topic < ActiveRecord::Base
   accepts_nested_attributes_for :notifications, allow_destroy: true
   validates_presence_of :title
   scope :user_writer, lambda{|params| where(:user_id => params)}
-  scope :pending_request, lambda{|params| where("user_id = '#{params}' and tag_id != ''")}
+  scope :pending_request, lambda{|params| where("user_id = '#{params}' and tag_id != '' and confirmation != 'true'")}
 end

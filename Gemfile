@@ -6,7 +6,7 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'jquery-rails'
+gem 'jquery-rails' ,'2.1.4'
 gem 'jquery-ui-rails'
 gem 'simple_form'
 gem 'simple-private-messages', '0.0.0', :git => 'git://github.com/jongilbraith/simple-private-messages.git'
@@ -25,6 +25,7 @@ gem 'acts-as-taggable-on'
 gem 'kaminari'
 gem "haml-rails"
 gem "friendly_id", "~> 4.0.9"
+gem 'remotipart','1.0.2', :git => 'https://github.com/JangoSteve/remotipart.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
