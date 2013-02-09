@@ -19,6 +19,7 @@ Simta2::Application.routes.draw do
   resources :proposals do
     get :todo, :on => :member
     post :comment, :on => :collection
+    get :bimbingan_proposal, :on => :member
   end
   devise_for :users
   

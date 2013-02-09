@@ -36,4 +36,15 @@ class ProposalsController < ApplicationController
       render 'new', :flash => { :error => "to do gagal di buat." }
     end
   end
+  
+  def bimbingan_proposal
+    @proposal = current_user.lecture_proposal.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def index
+    
+  end
 end

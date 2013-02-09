@@ -1,0 +1,17 @@
+.modal-header
+  %button.close{:type => "button", "data-dismiss" => "modal", "arial-hidden" => "true"} ×
+  %h4= @proposal.topic.title
+.modal-body
+  %p
+    %b Nama bimbingan :
+    = @proposal.student.name
+  %p
+    %b Progress :
+  .progress
+    .bar{:style => "width: #{10}%;"}= "#{@proposal.progress}%"
+  %p
+    %b Total To do:
+    = @proposal.todo_proposals.length
+.modal-footer
+  = link_to "lihat selengkapnya", proposals_path, :class => "btn btn-info", :target => "_blank"
+  

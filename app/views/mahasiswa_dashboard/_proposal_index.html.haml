@@ -14,6 +14,10 @@
           %tr
             %td= link_to f.title, todo_proposal_path(f)
             %td= f.create_todo_proposal.name
+            %td
+              %span.label.label-info
+                = f.comments.length
+                comments
       -else
         %tr
           %td belum ada proposal yang di upload

@@ -56,6 +56,10 @@ $(document).ready(function(){
   $('.pop-over').popover({
     html: true
   });
+  
+  $('.modal_bimbingan_call').click(function(){
+    $('#modal_bimbingan_proposal').html('<div style="width: 100%;text-align: center;"><img src="/assets/loading.gif" alt="Loading"></div>');
+  });
 });
 
 

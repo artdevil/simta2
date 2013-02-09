@@ -1,0 +1,24 @@
+.span6.dashboard-element
+  .navbar
+    .navbar-inner.custom
+      .brand-custom bimbingan proposal
+  .dashboard-inner
+    %table.table
+      - current_user.lecture_proposal.each do |f|
+        %tr
+          %td= link_to f.topic.title, bimbingan_proposal_proposal_path(f), :remote => true, "data-target" => "#modal_bimbingan_proposal", :role => "button", "data-toggle" => "modal", :class => "modal_bimbingan_call"
+          %td= f.student.name
+          %td
+            - if f.progress < 30
+              %span.label.label-important
+                = f.progress
+            - elsif f.progress < 70
+              %span.label.label-warning
+                = f.progress
+            - elsif f.progress < 99
+              %span.label.label-info
+              = f.progress
+            - elsif f.progress == 100
+              %span.label.label-success
+              = f.progress
+#modal_bimbingan_proposal.modal.hide.fade{"tabindex" => "-1", :role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}

@@ -1,0 +1,14 @@
+.span5.dashboard-element
+  .navbar
+    .navbar-inner.custom
+      .brand-custom Permintaan konfirmasi judul TA
+  .dashboard-inner
+    %table.table
+      - Topic.pending_request(current_user.id).each do |f|
+        %tr{:id => "confirm_#{f.id}"}
+          %td= link_to f.title, f
+          %td= link_to f.tag.name, "#", :class => "pop-over", :rel => "popover", "data-content" => "#{link_to 'lihat profile',user_profile_page_path(f.tag)} <br> #{link_to 'kirim pesan', messages_path }"
+          %td
+            %p{:style => "width: 70px;"}
+              = link_to "ya", approve_topic_path(f), :remote => true, :confirm => "apa anda yakin menerima konfirmasi ini ?", :class => "btn btn-primary btn-mini" 
+              %a.btn.btn-danger.btn-mini tidak
