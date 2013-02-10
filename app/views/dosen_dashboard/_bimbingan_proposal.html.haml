@@ -2,6 +2,11 @@
   .navbar
     .navbar-inner.custom
       .brand-custom bimbingan proposal
+      %ul.nav.pull-right
+        %li
+          %a.btn.btn-navbar-custom{:href => "/proposals"}
+            .icon-tasks
+            More
   .dashboard-inner
     %table.table
       - current_user.lecture_proposal.each do |f|
