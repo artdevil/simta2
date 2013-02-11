@@ -46,7 +46,7 @@ class TopicsController < ApplicationController
   def tag_topic
     @topic = Topic.find(params[:id])
     if @topic.update_attributes(:tag_id => current_user.id, :status_id => 2)
-      notification = create_notification(@topic.tag_id, @topic.user_id, @topic.id, @topic.class.name, Status.find(2).id, '1 pesan permintaan persetujuan topik TA')
+      notification = create_notification(@topic.tag_id, @topic.user_id, @topic.id, @topic.class.name, '1 pesan permintaan persetujuan topik TA')
       if notification
         flash[:success] = "topik berhasil di ambil. Menunggu konfirmasi dari dosen"
         redirect_to root_path
@@ -61,7 +61,7 @@ class TopicsController < ApplicationController
     if @topic.update_attributes(:confirmation => "true", :status_id => 3)
       proposal = Proposal.new(:student_id => @topic.tag_id, :lecture_id => @topic.user_id, :topic_id => @topic.id)
       if proposal.save
-        notification = create_notification(@topic.user_id,@topic.tag_id, @topic.id, @topic.class.name, Status.find(3).id, 'Permintaan TA anda disetujui silahkan upload proposal')
+        notification = create_notification(@topic.user_id,@topic.tag_id, @topic.id, @topic.class.name, 'Permintaan TA anda disetujui silahkan upload proposal')
         if notification
            respond_to do |format|
               format.js

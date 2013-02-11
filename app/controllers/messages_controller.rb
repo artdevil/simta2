@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     @message = Message.new params["message"]
     @message.sender = current_user
     if @message.save
-      notification = create_notification(@message.sender_id, @message.recipient_id, @message.id, @message.class.name, Status.find(1).id, '1 pesan private messages')
+      notification = create_notification(@message.sender_id, @message.recipient_id, @message.id, @message.class.name, '1 pesan private messages')
       if notification
         flash[:success] = "Pesan telah terkirim.";
         redirect_to messages_path

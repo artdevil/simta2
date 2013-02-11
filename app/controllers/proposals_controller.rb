@@ -24,9 +24,9 @@ class ProposalsController < ApplicationController
     @todo_proposal = current_user.student_proposal.todo_proposals.new(params[:todo_proposal])
     if @todo_proposal.save
       if params[:create] == "mahasiswa"
-        notification = create_notification(current_user.id, @todo_proposal.lecture_id, @todo_proposal.id, @todo_proposal.class.name, Status.find(1).id, '1 pesan to dos proposal')
+        notification = create_notification(current_user.id, @todo_proposal.lecture_id, @todo_proposal.id, @todo_proposal.class.name, '1 pesan to dos proposal')
       elsif params[:create] == "dosen"
-        notification = create_notification(current_user.id, @todo_proposal.student_id, @todo_proposal.id, @todo_proposal.class.name, Status.find(1).id, '1 pesan to dos proposal')
+        notification = create_notification(current_user.id, @todo_proposal.student_id, @todo_proposal.id, @todo_proposal.class.name, '1 pesan to dos proposal')
       end
       if notification
         flash[:success] = "To do proposal telah berhasil di buat.";
