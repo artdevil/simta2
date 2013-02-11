@@ -4,6 +4,8 @@
     <%= link_to n.status_description, n.notifiable_type.pluralize.downcase %>
   <% elsif n.notifiable_type.to_s == "Topic" %>
     <%= link_to n.status_description, root_path %>
+  <% elsif n.notifiable_type.to_s == "TodoProposal" %>
+    <%= link_to n.status_description, n.notifiable %>
   <% end %>
   </li>
   <% n.update_column(:read_at, Time.now) %>
