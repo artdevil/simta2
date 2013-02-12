@@ -1,0 +1,11 @@
+.container
+  .row
+    .span5.dashboard-element
+      .navbar
+        .navbar-inner.custom
+          .brand-custom mahasiswa
+      .dashboard-inner
+        = simple_form_for current_user.lecture_proposal, :url => data_mahasiswa_proposals_path, :method => "get", :remote => true do |f|
+          = f.input :student, :label => "pilih mahasiswa", :collection => current_user.lecture_proposal.map{|f| [f.student.name,f.student_id]}
+      #data_mahasiswa
+    #todo_mahasiswa

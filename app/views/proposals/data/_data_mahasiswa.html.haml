@@ -1,0 +1,25 @@
+%hr
+.dashboard-inner
+  %h4 Data Mahasiswa
+  %p
+    %b Nama
+    = f.name
+  %p
+    %b NIM
+    = f.keyid
+  %p
+    %b Judul :
+    = f.student_proposal.topic.title
+  %p
+    %b Pembimbing proposal :
+    = f.student_proposal.lecture.name
+  %p
+    %b progress proposal
+  .progress.progress-success
+    #bar_progress.bar{:style => "width : #{f.student_proposal.progress}%"}
+      = "#{f.student_proposal.progress}%"
+  %p
+    %b update progress
+    = simple_form_for f.student_proposal, :method => "get", :remote => true, :url => update_progress_proposal_path(f.id) do |n|
+      = n.input :progress
+      = n.submit 'update', :class => "btn btn-info"

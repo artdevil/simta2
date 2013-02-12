@@ -1,0 +1,23 @@
+.span7.dashboard-element
+  .navbar
+    .navbar-inner.custom
+      .brand-custom To dos proposal
+      %ul.nav.pull-right
+        %li
+          %a.btn.btn-navbar-custom{:href => "/proposals/new?create=#{current_user.user_type}&proposal=#{f.student_proposal.id}"}
+            .icon-pencil
+            Create
+  .dashboard-inner
+    %table.table
+      - if f.student_proposal.todo_proposals.length > 0
+        - f.student_proposal.todo_proposals.each do |n|
+          %tr
+            %td= link_to n.title, todo_proposal_path(n)
+            %td= n.create_todo_proposal.name
+            %td
+              %span.label.label-info
+                = n.comments.length
+                comments
+      -else
+        %tr
+          %td belum ada proposal yang di upload

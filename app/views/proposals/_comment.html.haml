@@ -6,7 +6,7 @@
       %a.pull-left.image_media
         = image_tag f.user.avatar_url
       .media-body
-        %h5.media-heading= "#{f.commentable.create_todo_proposal.name}, says: "
+        %h5.media-heading= "#{f.user.name}, says: "
         %p= raw f.comment
         - if f.attachments.length > 0
           %b{:style => "color: #9e9e9e;"} lampiran

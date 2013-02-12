@@ -60,6 +60,14 @@ $(document).ready(function(){
   $('.modal_bimbingan_call').click(function(){
     $('#modal_bimbingan_proposal').html('<div style="width: 100%;text-align: center;"><img src="/assets/loading.gif" alt="Loading"></div>');
   });
+  
+  $('#proposal_student').change(function(){
+    if($(this).val() != ""){
+      $(this).parent().parent().parent().parent().find('form').submit();
+      $('#data_mahasiswa').html('<div style="width: 100%;text-align: center;"><img src="/assets/loading.gif" alt="Loading"></div>');
+      $('#todo_mahasiswa').html('<div style="width: 100%;text-align: center;"><img src="/assets/loading.gif" alt="Loading"></div>');
+    }
+  });
 });
 
 
