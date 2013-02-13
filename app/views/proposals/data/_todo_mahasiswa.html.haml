@@ -12,11 +12,11 @@
       - if f.student_proposal.todo_proposals.length > 0
         - f.student_proposal.todo_proposals.order('created_at DESC').each do |n|
           %tr
-            %td
+            %td{:id => "finish_done#{n.id}"}
               -if n.done == false
                 = link_to todo_finish_proposal_path(n), :remote => true, :confirm => "apa anda yakin ?" do
                   %i.icon-flag.tool-tip{:title => "tandai sudah selesai", :rel => "tooltip"}
-            %td{:style => "#{'text-decoration: line-through;' if n.done == true}"}
+            %td{:id => "link_done#{n.id}",:style => "#{'text-decoration: line-through;' if n.done == true}"}
               = link_to n.title, todo_proposal_path(n)
             %td= n.create_todo_proposal.name
             %td

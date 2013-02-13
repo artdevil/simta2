@@ -69,7 +69,7 @@ class ProposalsController < ApplicationController
   end
   
   def todo_finish
-    @todo_proposal = TodoProposal.where(:id => params[:id], :create_id => current_user.id)
+    @todo_proposal = TodoProposal.find(params[:id])
     if @todo_proposal
       if @todo_proposal.update_attributes(:done => 1)
         respond_to do |format|
