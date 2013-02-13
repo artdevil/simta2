@@ -67,4 +67,15 @@ class ProposalsController < ApplicationController
       end
     end
   end
+  
+  def todo_finish
+    @todo_proposal = TodoProposal.where(:id => params[:id], :create_id => current_user.id)
+    if @todo_proposal
+      if @todo_proposal.update_attributes(:done => 1)
+        respond_to do |format|
+          format.js
+        end
+      end
+    end
+  end
 end

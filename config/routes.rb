@@ -22,6 +22,7 @@ Simta2::Application.routes.draw do
     get :bimbingan_proposal, :on => :member
     get :data_mahasiswa, :on => :collection
     get :update_progress, :on => :member
+    get :todo_finish, :on => :member
   end
   devise_for :users
   
