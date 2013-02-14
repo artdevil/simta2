@@ -2,7 +2,8 @@
   .row
     .span12
       .page-header
-        %h1= @todo_proposal.title
+        %h1{:style => "#{'text-decoration: line-through;' if @todo_proposal.done == true}"}
+          = @todo_proposal.title
         %small
           = "Dipost pada tanggal #{@todo_proposal.created_at.strftime('%d %B %Y')} oleh #{@todo_proposal.create_todo_proposal.name}"
   .row

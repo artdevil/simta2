@@ -1,13 +1,13 @@
 .span7.dashboard-element
   .navbar
     .navbar-inner.custom
-      .brand-custom Judul TA yang diajukan
+      .brand-custom{"data-target" => "#ta_table"} Judul TA yang diajukan
       %ul.nav.pull-right
         %li
           %a.btn.btn-navbar-custom{:href => "/topics/new"}
             .icon-pencil
             Create
-  .dashboard-inner
+  #ta_table.dashboard-inner
     %table.table
       - current_user.topics.each do |f|
         %tr

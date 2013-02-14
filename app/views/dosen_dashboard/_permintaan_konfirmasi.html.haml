@@ -1,8 +1,8 @@
 .span5.dashboard-element
   .navbar
     .navbar-inner.custom
-      .brand-custom Permintaan konfirmasi judul TA
-  .dashboard-inner
+      .brand-custom{"data-target" => "#konfirmasi_table"} Permintaan konfirmasi judul TA
+  #konfirmasi_table.dashboard-inner
     %table.table
       - Topic.pending_request(current_user.id).each do |f|
         %tr{:id => "confirm_#{f.id}"}

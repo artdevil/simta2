@@ -1,13 +1,13 @@
 .span6.dashboard-element
   .navbar
     .navbar-inner.custom
-      .brand-custom bimbingan proposal
+      .brand-custom{"data-target" => "#bimbingan_proposal_table"} bimbingan proposal
       %ul.nav.pull-right
         %li
           %a.btn.btn-navbar-custom{:href => "/proposals"}
             .icon-tasks
             More
-  .dashboard-inner
+  #bimbingan_proposal_table.dashboard-inner
     %table.table
       - current_user.lecture_proposal.each do |f|
         %tr

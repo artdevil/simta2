@@ -68,6 +68,10 @@ $(document).ready(function(){
       $('#todo_mahasiswa').html('<div style="width: 100%;text-align: center;"><img src="/assets/loading.gif" alt="Loading"></div>');
     }
   });
+  
+  $(".brand-custom").click(function () {
+        $($(this).attr('data-target')).toggle();
+      });
 });
 
 
