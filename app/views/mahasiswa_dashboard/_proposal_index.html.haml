@@ -12,7 +12,8 @@
       - if user.todo_proposals.length > 0
         - user.todo_proposals.order('created_at DESC').each do |f|
           %tr
-            %td= link_to f.title, todo_proposal_path(f)
+            %td{:style => "#{'text-decoration: line-through;' if f.done == true}"}
+              = link_to f.title, todo_proposal_path(f)
             %td= f.create_todo_proposal.name
             %td
               %span.label.label-info
