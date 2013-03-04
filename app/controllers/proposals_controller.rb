@@ -78,4 +78,9 @@ class ProposalsController < ApplicationController
       end
     end
   end
+
+  def dosen_proposal
+    @user = User.lecture_proposal(params[:term]).where("id != #{current_user.id}")
+    render json: @user.map(&:name)
+  end
 end

@@ -72,6 +72,8 @@ $(document).ready(function(){
   $(".brand-custom").click(function () {
         $($(this).attr('data-target')).toggle();
       });
+
+  
 });
 
 

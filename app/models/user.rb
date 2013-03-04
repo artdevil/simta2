@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def self.lecture_proposal
-    
+  def self.lecture_proposal(params)
+    where("(name LIKE ? OR keyid LIKE ?) AND user_type = 'dosen'", "#{params}%","#{params}%")
   end
 end
