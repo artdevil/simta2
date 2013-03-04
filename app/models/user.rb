@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+  
+  def self.lecture_proposal
+    
+  end
 end
