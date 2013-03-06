@@ -24,6 +24,7 @@ Simta2::Application.routes.draw do
     get :update_progress, :on => :member
     get :todo_finish, :on => :member
     get :dosen_proposal, :on => :collection
+    put :update_dosen
   end
   devise_for :users
   

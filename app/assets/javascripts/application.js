@@ -42,9 +42,11 @@ $(document).ready(function(){
     $(this).button('loading');
   });
   
+  /*
   if ($(document).length > 0) {
-    setTimeout(updateComments, 10000);
-  }
+      setTimeout(updateComments, 10000);
+    }*/
+  
   
   $('form').on('nested:fieldAdded', function(event) {
     $(event.target).find(':input').enableClientSideValidations();

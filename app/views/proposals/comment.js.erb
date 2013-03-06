@@ -1,4 +1,4 @@
 <% if @comment.comment.length > 0 %>
-  $('#comment_todo').append('<%= escape_javascript(render :partial => "comment", :locals => {:f => @comment}).html_safe %>');
+  $('#comment_todo').append('<%= escape_javascript(render :partial => "todo_proposals/comment", :locals => {:f => @comment}).html_safe %>');
 <% end %>
 $('.btn.btn-info.ajax_button').button('reset');

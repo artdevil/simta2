@@ -24,6 +24,5 @@
   #comment_todo
     - if @todo_proposal.comments.length > 0
       - @todo_proposal.comments.each do |f|
-        = render :partial => "comment", :locals => {:f => f}
-  = render :partial => "todo_form_comment", :locals => {:f => @todo_proposal}
-        
+        = render :partial => "todo_proposals/comment", :locals => {:f => f}
+  = render :partial => "todo_proposals/todo_form_comment", :locals => {:f => @todo_proposal}

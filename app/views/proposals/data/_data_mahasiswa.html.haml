@@ -13,7 +13,7 @@
   %p
     %b Pembimbing proposal I:
     = f.student_proposal.lecture.name
-  %p
+  %p#pembimbing2
     %b Pembimbing proposal II:
     = f.student_proposal.assistant ? f.student_proposal.assistant.name : "#{link_to 'tambahkan dosen pembimbing', '#modalAddDosen',:data => {:toggle => 'modal'}}".html_safe
   %p
@@ -26,13 +26,13 @@
     = simple_form_for f.student_proposal, :method => "get", :remote => true, :url => update_progress_proposal_path(f.id) do |n|
       = n.input :progress
       = n.submit 'update', :class => "btn btn-info"
-  - if !f.student_proposal.assistant
-    #modalAddDosen.modal.hide.fade{:tabindex => "-1", :role => "dialog", "aria-hidden" => "true"}
-      .modal-header
-        %button.close{"data-dismiss" => "modal", "arial-hidden" => "true"} x
-        %h3#myModalLabel tambah dosen pembimbing 2
-      .modal-body
-      .form_modal
-        = simple_form_for Proposal.new do |f|
-          = f.input :assistant,:label => false, :placeholder => "ketik nama atau NIP", :input_html => {:data => {:autocomplete_source => dosen_proposal_proposals_path}}
-          = f.submit "save", :class => "btn btn-primary"
+- if !f.student_proposal.assistant
+  #modalAddDosen.modal.hide.fade{:tabindex => "-1", :role => "dialog", "aria-hidden" => "true"}
+    .modal-header
+      %button.close{"data-dismiss" => "modal", "arial-hidden" => "true"} x
+      %h3#myModalLabel tambah dosen pembimbing 2
+    .modal-body
+    .form_modal
+      = simple_form_for f.student_proposal, :url => proposal_update_dosen_path(f.student_proposal), :remote => true do |f|
+        = f.input :assistant,:label => false, :placeholder => "ketik nama atau NIP", :input_html => {:data => {:autocomplete_source => dosen_proposal_proposals_path}}
+        = f.submit "save", :class => "btn btn-primary"
