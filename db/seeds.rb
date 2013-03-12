@@ -7,10 +7,22 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # create mahasiswa
-User.create(:email => "adhiguna.sabril@gmail.com", :name => "adhiguna utama sabril", :gender => "pria", :keyid => "111128355", :password => "tes123456",:user_type => "mahasiswa" )
+User.create(:name => "adhiguna utama sabril", :keyid => "111128355", :password => "tes123456",:user_type => "mahasiswa" )
 
 # create dosen
-@dosen = User.create(:email => "artdvl91@gmail.com", :name => "burhanuddin dirgantara", :gender => "pria", :keyid => "111111111", :password => "tes123456", :user_type => "dosen" )
+@dosen = User.create(:name => "burhanuddin dirgantara", :keyid => "111111111", :password => "tes123456", :user_type => "dosen" )
+
+#status mahasiswa
+
+status_mahasiswa = {
+  1 => "belum ada judul",
+  2 => "mengajukan judul",
+  3 => "pengerjaan proposal"
+}
+
+(1..3).each do |i|
+  UserStatus.create(:description => "#{status_mahasiswa[i]}")
+end
 
 # judul TA
 titles = {
@@ -48,7 +60,7 @@ description = '<p><span style="color: rgb(0, 0, 0); font-family: Arial, Helvetic
 
 # bikin TA
 (1..11).each do |i|
-  Topic.create(:user_id => @dosen.id.to_i, :title => "#{titles[i]}", :description => "#{description}", :tag_list => "#{meta[i]}")
+  Topic.create(:lecture_id => @dosen.id.to_i, :title => "#{titles[i]}", :description => "#{description}", :tag_list => "#{meta[i]}")
 end
 # status name
 status_name = {
@@ -67,24 +79,7 @@ status_name = {
   13 => "Skripsi selesai"
 }
 
-# status other
-other_name = {
-  1 => "Belum ada",
-  2 => "Tunggu dosen sepakat",
-  3 => "Permintaan TA anda disetujui silahkan Upload proposal",
-  4 => "Prasyarat SK skripsi",
-  5 => "Penempelan abstrak",
-  6 => "Penerbitan SK skripsi",
-  7 => "Bimbingan skripsi",
-  8 => "Penuhi syarat ujian skripsi",
-  9 => "Menunggu verifikasi syarat ujian",
-  10 => "Ujian skripsi",
-  11 => "Upload Buku + revisi",
-  12 => "Menunggu Acc revisi",
-  13 => "Skripsi selesai"
-}
-
 # status
 (1..13).each do |i|
-  Status.create(:name => "#{status_name[i]}", :other => "#{other_name[i]}")
+  TopicStatus.create(:description => "#{status_name[i]}")
 end

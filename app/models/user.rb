@@ -1,35 +1,43 @@
 class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
-  has_many :topics
+  has_private_messages
+  
+  #relation
+  has_one :user_info
+  belongs_to :user_status
+  has_many :topics, :class_name => "Topic", :foreign_key => "lecture_id"
   has_many :notifications
   has_one :tag, :class_name => "Topic", :foreign_key => "tag_id"
   has_many :lecture_proposal, :class_name => "Proposal", :foreign_key => "lecture_id"
   has_one :student_proposal, :class_name => "Proposal", :foreign_key => "student_id"
   has_many :student_todo_proposals, :class_name => "TodoProposal", :foreign_key => "student_id"
   has_many :lecture_todo_proposals, :class_name => "TodoProposal", :foreign_key => "lecture_id"
-  has_private_messages
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable, :registerable :recoverable,
   devise :database_authenticatable, :registerable, :rememberable, :trackable
+  
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :password, :password_confirmation, :remember_me, :keyid, :name, :birthday, :gender, :religion,
-                  :avatar, :telephone, :user_type
+  attr_accessible :password, :password_confirmation, :remember_me, :keyid, :name, :user_info_attributes, :avatar, :user_type, :user_status_id, :slug
+  
+  #nested form
+  accepts_nested_attributes_for :user_info
   
   mount_uploader :avatar, AvatarUploader
   # attr_accessible :title, :body
   
+  #scope
   scope :user_student, lambda{|params| where("(name LIKE ? OR keyid LIKE ?) AND user_type != 'dosen'", "#{params}%","#{params}%")}
+  scope :user_topic, lambda{|params| where("(name LIKE ? OR keyid LIKE ?) AND user_type != 'dosen' AND user_status_id = 1", "#{params}%","#{params}%")}
   scope :user_lecture, lambda{|params| where("(name LIKE ? OR keyid LIKE ?) AND user_type != 'mahasiswa'", "#{params}%","#{params}%")}
 
-  
+  protected
   
   def email_required?
     false
   end
-  
-  protected
   
   def self.included(base)
     base.extend ClassMethods

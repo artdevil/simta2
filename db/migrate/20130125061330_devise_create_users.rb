@@ -3,9 +3,12 @@ class DeviseCreateUsers < ActiveRecord::Migration
     create_table(:users) do |t|
       ## Database authenticatable
       # t.string :email
-      t.string :keyid, :null => false, :default => ""
+      t.string :keyid, :null => false, :default => "", :limit => 9
       t.string :encrypted_password, :null => false, :default => ""
-
+      t.string :name
+      t.string :user_type, :null => false
+      t.string :avatar
+      t.integer :user_status_id, :null => false, :default => 1
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

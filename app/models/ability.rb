@@ -10,7 +10,7 @@ class Ability
     end
     
     if user.user_type == "dosen"
-      can :manage, Topic, :user_id => user.id
+      can :manage, Topic, :lecture_id => user.id
       cannot :tag_topic, Topic
     end
     # Define abilities for the passed in user here. For example:

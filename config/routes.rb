@@ -11,6 +11,7 @@ Simta2::Application.routes.draw do
   resources :topics do
     get :tag_topic, :on => :member
     get :approve, :on => :member
+    get :user, :on => :collection
   end
   resources :messages do
     get :reply, :on => :member

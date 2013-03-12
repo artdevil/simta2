@@ -18,4 +18,14 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def user_find(param)
+    if current_user.user_type == "mahasiswa"
+      user = User.user_lecture param
+    elsif current_user.user_type == "dosen"
+      user = User.user_student param
+    end
+    
+    return user
+  end
+  
 end

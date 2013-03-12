@@ -2,4 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  topic:
+    create:
+      success: "topik berhasil dimasukkan"
+      error: "topik gagal dimasukkan"
+    tag_topic:
+      success: "topik berhasil di ambil. Menunggu konfirmasi dari dosen"
+      error: "topic tidak bisa diambil."
+      notification: "1 pesan permintaan persetujuan topik TA"

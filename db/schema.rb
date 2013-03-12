@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304060800) do
+ActiveRecord::Schema.define(:version => 20130310160244) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,6 +86,12 @@ ActiveRecord::Schema.define(:version => 20130304060800) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "contact_infos", :force => true do |t|
+    t.integer "user_info_id"
+    t.string  "contact_type"
+    t.string  "contact_info"
+  end
+
   create_table "messages", :force => true do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
@@ -122,13 +128,6 @@ ActiveRecord::Schema.define(:version => 20130304060800) do
     t.integer  "assistant_id"
   end
 
-  create_table "statuses", :force => true do |t|
-    t.string   "name"
-    t.string   "other"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -161,41 +160,53 @@ ActiveRecord::Schema.define(:version => 20130304060800) do
 
   add_index "todo_proposals", ["slug"], :name => "index_todo_proposals_on_slug", :unique => true
 
+  create_table "topic_statuses", :force => true do |t|
+    t.string "description"
+  end
+
   create_table "topics", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "lecture_id"
     t.string   "title"
     t.text     "description"
     t.string   "tag_list"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "tag_id"
-    t.string   "confirmation"
+    t.boolean  "confirmation",    :default => false, :null => false
     t.string   "slug"
-    t.integer  "status_id",    :default => 1, :null => false
+    t.integer  "topic_status_id", :default => 1,     :null => false
   end
 
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
 
+  create_table "user_infos", :force => true do |t|
+    t.integer "user_id"
+    t.date    "birthday"
+    t.string  "gender"
+    t.string  "religion"
+  end
+
+  create_table "user_statuses", :force => true do |t|
+    t.string "description"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "keyid",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "keyid",                  :limit => 9, :default => "", :null => false
+    t.string   "encrypted_password",                  :default => "", :null => false
+    t.string   "name"
+    t.string   "user_type",                                           :null => false
+    t.string   "avatar"
+    t.integer  "user_status_id",                      :default => 1,  :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                       :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "name"
-    t.date     "birthday"
-    t.string   "gender"
-    t.string   "religion"
-    t.string   "avatar"
-    t.string   "telephone"
-    t.string   "user_type"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "slug"
   end
 

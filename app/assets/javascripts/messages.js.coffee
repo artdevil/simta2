@@ -10,6 +10,10 @@ jQuery ->
 	$('#proposal_assistant').live 'click',(event) ->
   	$('#proposal_assistant').autocomplete
     	source: $('#proposal_assistant').data('autocomplete-source')
+jQuery ->
+  $('#topic_proposal_attributes_student_id').live 'click',(event) ->
+    $('#topic_proposal_attributes_student_id').autocomplete
+      source: $('#topic_proposal_attributes_student_id').data('autocomplete-source')
 jQuery -> 
   $("#new_message").click ->
     $("form[data-validate]").validate()

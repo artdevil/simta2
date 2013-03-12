@@ -2,7 +2,7 @@
   <div class="row">
     <div class="span12">
       <div class="page-header">
-        <h2>Edit Profile User</h2>
+        <h2>Edit Profile</h2>
       </div>
     </div>
   </div>
@@ -17,27 +17,26 @@
       <% user = current_user.user_type == "mahasiswa" ? "NIM mahasiswa" : "NIP dosen" %>
       <%= f.input :keyid,:label => "#{user}", :disabled => true %>
       <%= f.input :name,:label => "Nama", :disabled => true %>
-      <%= f.input :email, :autofocus => true %>
-      <%= f.input :birthday, :label => "Tanggal Lahir", :as => :string, :required => true, :input_html => {:class => "date_picker"} %>
-      <%= f.input :gender, :label => "Jenis Kelamin", :as => :select, :include_blank => false, :collection => [["pria","pria"],["wanita","wanita"]], :required => true %>
-      <%= f.input :religion, :as => :select, :include_blank => false, :collection => [["islam","islam"],["kristen katolik","kristen katolik"],["kristen protestan","kristen protestan"],["hindu","hindu"],["budha","budha"]], :required => true %>
-      <%= f.input :telephone %>
+      <% resource.build_user_info if resource.user_info.blank? %>
+      <%= f.simple_fields_for :user_info do |n| %>
+        <%= n.input :birthday, :label => "Tanggal Lahir", :as => :string, :required => true, :input_html => {:class => "date_picker"} %>
+        <%= n.input :gender, :label => "Jenis Kelamin", :as => :select, :include_blank => false, :collection => [["pria","pria"],["wanita","wanita"]], :required => true %>
+        <%= n.input :religion, :as => :select, :include_blank => false, :collection => [["islam","islam"],["kristen katolik","kristen katolik"],["kristen protestan","kristen protestan"],["hindu","hindu"],["budha","budha"]], :required => true %>
+      <% end %>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
-      <%= f.input :current_password, :validate => { :presence => true }, :hint => "we need your current password to confirm your changes" %>
+      <%= f.input :current_password, :validate => { :presence => true }, :hint => "dibutuhkan untuk authentifikasi" %>
     </div>
     <div class="span3">
-      <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+      <%= f.input :password, :autocomplete => "off", :hint => "Jangan di isi jika tidak ingin mengganti password", :required => false %>
       <%= f.input :password_confirmation, :required => false %>
     </div>
   </div>
   <div class="row">
-    <div class="span3"></div>
-    <div class="span9">
-      <div class="form-actions">
-        <%= f.button :submit, "Update", :class => "btn btn-primary" %> <%= link_to "Back", :back , :class => "btn btn-danger"%>
-      </div>
+    <div class="span4"></div>
+    <div class="span8">
+      <%= f.button :submit, "Update", :class => "btn btn-primary" %> <%= link_to "Back", :back , :class => "btn btn-danger"%>
     </div>
   </div>
   <% end %>
