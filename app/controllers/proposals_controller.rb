@@ -11,6 +11,7 @@ class ProposalsController < ApplicationController
   
   def todo
     @todo_proposal = TodoProposal.find(params[:id])
+    render 'todo_proposals/index'
   end
   
   def comment
@@ -72,6 +73,23 @@ class ProposalsController < ApplicationController
     @todo_proposal = TodoProposal.find(params[:id])
     if @todo_proposal
       if @todo_proposal.update_attributes(:done => 1)
+        respond_to do |format|
+          format.js
+        end
+      end
+    end
+  end
+
+  def dosen_proposal
+    @user = User.lecture_proposal(params[:term]).where("id != #{current_user.id}")
+    render json: @user.map(&:name)
+  end
+  
+  def update_dosen
+    user = User.find_by_name(params[:proposal]["assistant"])
+    if user
+      @proposal = current_user.lecture_proposal.find(params[:proposal_id])
+      if @proposal.update_attributes(:assistant_id => user.id)
         respond_to do |format|
           format.js
         end

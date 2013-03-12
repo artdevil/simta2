@@ -6,11 +6,7 @@ class MessagesController < ApplicationController
   end
   
   def user
-    if current_user.user_type == "mahasiswa"
-      @user = User.user_lecture params[:term]
-    elsif current_user.user_type == "dosen"
-      @user = User.user_student params[:term]
-    end
+    @user = user_find(params[:term])
     render json: @user.map(&:name)
   end
   

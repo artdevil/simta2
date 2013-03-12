@@ -18,12 +18,26 @@ class TopicsController < ApplicationController
   end
 
   def create
+    if !params[:topic][:proposal_attributes][:student_id].blank?
+      user = user_find(params[:topic][:proposal_attributes][:student_id])
+      if user
+        params[:topic][:proposal_attributes][:student_id] = user.first.id
+        params[:topic][:proposal_attributes][:lecture_id] = current_user.id
+        params[:topic][:confirmation] = true
+        params[:topic][:status_id] = 3
+        params[:topic][:tag_id] = user.first.id
+        user.first.update_attributes(:user_status_id => 3)
+      else
+        
+      end
+    end
     @topic = Topic.new params[:topic]
-    @topic.user_id = current_user.id
+    @topic.lecture_id = current_user.id
     if @topic.save
-      flash[:success] = "topik berhasil di inputkan";
+      flash[:success] = I18n.t('topic.create.success')
       redirect_to @topic
     else
+      flash[:error] = I18n.t('topic.create.error')
       render 'new'
     end
   end
@@ -36,7 +50,7 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     if @topic.update_attributes(params[:topic])
-      flash[:success] = "topik berhasil di update";
+      flash[:success] = "topik berhasil di update"
       redirect_to @topic
     else
       render 'edit'
@@ -45,23 +59,24 @@ class TopicsController < ApplicationController
   
   def tag_topic
     @topic = Topic.find(params[:id])
-    if @topic.update_attributes(:tag_id => current_user.id, :status_id => 2)
-      notification = create_notification(@topic.tag_id, @topic.user_id, @topic.id, @topic.class.name, '1 pesan permintaan persetujuan topik TA')
+    if @topic.update_attributes(:tag_id => current_user.id, :topic_status_id => 2)
+      notification = create_notification(@topic.tag_id, @topic.lecture_id, @topic.id, @topic.class.name, I18n.t('topic.tag_topic.notification'))
       if notification
-        flash[:success] = "topik berhasil di ambil. Menunggu konfirmasi dari dosen"
+        current_user.update_column("user_status_id",2)
+        flash[:success] = I18n.t('topic.tag_topic.success')
         redirect_to root_path
       end
     else
-      redirect_to @topic, :flash => { :error => "topic tidak bisa diambil." }
+      redirect_to @topic, :flash => { :error => I18n.t('topic.tag_topic.error') }
     end
   end
   
   def approve
     @topic = current_user.topics.find(params[:id])
-    if @topic.update_attributes(:confirmation => "true", :status_id => 3)
-      proposal = Proposal.new(:student_id => @topic.tag_id, :lecture_id => @topic.user_id, :topic_id => @topic.id)
+    if @topic.update_attributes(:confirmation => true, :topic_status_id => 3)
+      proposal = Proposal.new(:student_id => @topic.tag_id, :lecture_id => @topic.lecture_id, :topic_id => @topic.id)
       if proposal.save
-        notification = create_notification(@topic.user_id,@topic.tag_id, @topic.id, @topic.class.name, 'Permintaan TA anda disetujui silahkan upload proposal')
+        notification = create_notification(@topic.lecture_id,@topic.tag_id, @topic.id, @topic.class.name, 'Permintaan TA anda disetujui silahkan upload proposal')
         if notification
            respond_to do |format|
               format.js
@@ -69,6 +84,11 @@ class TopicsController < ApplicationController
         end
       end
     end
+  end
+  
+  def user
+    @user = User.user_topic params[:term]
+    render json: @user.map(&:name)
   end
   
 end

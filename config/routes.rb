@@ -11,6 +11,7 @@ Simta2::Application.routes.draw do
   resources :topics do
     get :tag_topic, :on => :member
     get :approve, :on => :member
+    get :user, :on => :collection
   end
   resources :messages do
     get :reply, :on => :member
@@ -23,6 +24,8 @@ Simta2::Application.routes.draw do
     get :data_mahasiswa, :on => :collection
     get :update_progress, :on => :member
     get :todo_finish, :on => :member
+    get :dosen_proposal, :on => :collection
+    put :update_dosen
   end
   devise_for :users
   

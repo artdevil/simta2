@@ -19,12 +19,12 @@ module ApplicationHelper
   end
   
   def label_create topic
-    status = topic.status_id
+    status = topic.topic_status_id
     if status == 1
       class_status = "label label-success"
     elsif status == 2 or status == 3
       class_status = "label label-important"
     end
-    return content_tag(:span, topic.status.name, :class => class_status)
+    return content_tag(:span, topic.topic_status.description, :class => class_status)
   end
 end

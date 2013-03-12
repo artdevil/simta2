@@ -42,9 +42,11 @@ $(document).ready(function(){
     $(this).button('loading');
   });
   
-  if ($(document).length > 0) {
+  
+  if($(document).length > 0) {
     setTimeout(updateComments, 10000);
   }
+  
   
   $('form').on('nested:fieldAdded', function(event) {
     $(event.target).find(':input').enableClientSideValidations();
@@ -70,8 +72,14 @@ $(document).ready(function(){
   });
   
   $(".brand-custom").click(function () {
-        $($(this).attr('data-target')).toggle();
-      });
+    $($(this).attr('data-target')).toggle();
+  });
+
+  $('.advanced').click(function(){
+    $($(this).attr('data-target')).show();
+    $(this).hide();
+  });
+  
 });
 
 

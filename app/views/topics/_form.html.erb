@@ -2,6 +2,13 @@
   <%= f.input :title, :label => "Judul", :autofocus => true %>
   <%= f.input :tag_list, :label => "tag (pisahakan dengan koma)" %>
   <%= f.input :description, :label => "Deskripsi", :as => :ckeditor %>
+  <a class="advanced" data-target="#advanced_proposal_form">Advanced mode</a>
+  <div class="advanced_hide" id="advanced_proposal_form">
+    <% @topic.build_proposal if @topic.proposal.blank? %>
+    <%= f.fields_for :proposal do |n| %>
+      <%= n.input :student_id,:as => :string, :placeholder => "masukkan NIM atau nama", :label => "mahasiswa yang mengerjakan", :input_html => {:data => {:autocomplete_source => user_topics_path}} %>
+    <% end %>
+  </div>
   <%= f.fields_for :attachments do |a| %>
     <%= render :partial => 'shared/attachment', :locals => {:n => a} %>
   <% end %>
