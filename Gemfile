@@ -25,7 +25,7 @@ gem 'acts-as-taggable-on'
 gem 'kaminari'
 gem "haml-rails"
 gem "friendly_id", "~> 4.0.9"
-gem 'remotipart','1.0.2', :git => 'https://github.com/JangoSteve/remotipart.git'
+gem 'remotipart','1.0.2'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -44,7 +44,7 @@ group :development, :test do
   gem 'rspec-rails','2.12.0'
   gem 'capybara','1.1.4'
   gem 'capybara-webkit', '~> 0.12.1'
-  gem 'capybara-mechanize','0.3.0', :git => 'git://github.com/jeroenvandijk/capybara-mechanize.git'
+  gem "capybara-mechanize", "~> 0.3.0"
   gem 'launchy','2.1.2'
   gem 'factory_girl_rails','4.1.0'
   gem 'test-unit','2.5.3'
