@@ -2,11 +2,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
+    if current_user
+      redirect_to root_url, :alert => exception.message
+    elsif current_admin_user
+      redirect_to admin_dashboard_path, :alert => exception.message
+    end
   end
   
   def current_ability
-    @current_ability ||= Ability.new(current_user)
+    @current_ability ||= case
+                           when current_user
+                             Ability.new(current_user)
+                           when current_user_admin
+                             AdminAbility.new(current_user)
+                           end
+    # @current_ability ||= Ability.new(current_user)
   end
   
   def create_notification sender_id, receiver_id, notifiable_id, notifiable_type, status_description

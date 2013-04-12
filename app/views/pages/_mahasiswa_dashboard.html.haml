@@ -1,9 +1,9 @@
 .row
   - if !current_user.student_proposal.nil?
-  - user = current_user.student_proposal
+    - user = current_user.student_proposal
     = render :partial => 'mahasiswa_dashboard/proposal_navbar', :locals => {:user => user}
     = render :partial => 'mahasiswa_dashboard/proposal_index', :locals => {:user => user}
-  -else
+  - else
     .span8.dashboard-element
       .navbar
         .navbar-inner.custom
@@ -12,7 +12,7 @@
         - if current_user.user_status_id != 1
           %p
             Menunggu konfirmasi dari dosen
-        -else
+        - else
           %p 
             anda belum mempunyai topik tugas akhir. silahkan mencari topik tugas akhir di
             = link_to "sini", topics_path

@@ -1,6 +1,7 @@
 ActiveAdmin.register AdminUser do     
-  index do                            
-    column :email                     
+  index do    
+    column :keyid                        
+    column :username                     
     column :current_sign_in_at        
     column :last_sign_in_at           
     column :sign_in_count             
