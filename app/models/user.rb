@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :authentication_keys => [:keyid]
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :password, :password_confirmation, :remember_me, :keyid, :name, :user_info_attributes, :avatar, :user_type, :user_status_id, :slug
+  attr_accessible :limit_proposal, :limit_scription, :password, :password_confirmation, :remember_me, :keyid, :name, :user_info_attributes, :avatar, :user_type, :user_status_id, :slug
   
   #nested form
   accepts_nested_attributes_for :user_info

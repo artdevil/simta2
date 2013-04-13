@@ -29,7 +29,9 @@ Simta2::Application.routes.draw do
   end
   devise_for :users
   
-  ActiveAdmin.routes(self)
+  ActiveAdmin.routes(self) do
+    root :to => "admin/dashboard#index"
+  end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 

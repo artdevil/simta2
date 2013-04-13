@@ -9,6 +9,7 @@ class AdminUser < ActiveRecord::Base
   attr_accessible :user_type, :password, :password_confirmation, :remember_me, :keyid, :username
   # attr_accessible :title, :body
   
+  
   protected
   
   def email_required?

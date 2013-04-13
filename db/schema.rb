@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310160244) do
+ActiveRecord::Schema.define(:version => 20130413005913) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -210,6 +210,8 @@ ActiveRecord::Schema.define(:version => 20130310160244) do
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "slug"
+    t.string   "limit_proposal"
+    t.string   "limit_scription"
   end
 
   add_index "users", ["keyid"], :name => "index_users_on_keyid", :unique => true

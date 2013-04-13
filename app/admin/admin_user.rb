@@ -1,18 +1,16 @@
-ActiveAdmin.register AdminUser do     
+ActiveAdmin.register AdminUser do 
   index do    
     column :keyid                        
-    column :username                     
+    column :username 
+    column :user_type                    
     column :current_sign_in_at        
-    column :last_sign_in_at           
-    column :sign_in_count             
+    column :last_sign_in_at            
     default_actions                   
-  end                                 
-
-  filter :email                       
+  end                      
 
   form do |f|                         
     f.inputs "Admin Details" do       
-      f.input :email                  
+      f.input :username                  
       f.input :password               
       f.input :password_confirmation  
     end                               

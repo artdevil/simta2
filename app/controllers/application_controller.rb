@@ -2,19 +2,24 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   rescue_from CanCan::AccessDenied do |exception|
-    if current_user
-      redirect_to root_url, :alert => exception.message
-    elsif current_admin_user
-      redirect_to admin_dashboard_path, :alert => exception.message
-    end
+    redirect_to root_url, :alert => exception.message
+  end
+  
+  def after_sign_in_path_for(resource)
+    case resource
+      when User
+        root_path
+      when AdminUser
+        admin_dashboard_path
+      end
   end
   
   def current_ability
     @current_ability ||= case
                            when current_user
                              Ability.new(current_user)
-                           when current_user_admin
-                             AdminAbility.new(current_user)
+                           when current_admin_user
+                             AdminAbility.new(current_admin_user)
                            end
     # @current_ability ||= Ability.new(current_user)
   end
