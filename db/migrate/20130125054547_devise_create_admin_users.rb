@@ -3,6 +3,7 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration
     super
     # Create a default user
     AdminUser.create!(:username => 'mohammad ramdhani',:keyid => "02730260-1", :password => 'password',:user_type => "kaprodi", :password_confirmation => 'password') if direction == :up
+    AdminUser.create!(:username => 'Admin',:keyid => "02730261-1", :password => 'password',:user_type => "admin", :password_confirmation => 'password') if direction == :up
   end
 
   def change

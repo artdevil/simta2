@@ -59,15 +59,19 @@ class TopicsController < ApplicationController
   
   def tag_topic
     @topic = Topic.find(params[:id])
-    if @topic.update_attributes(:tag_id => current_user.id, :topic_status_id => 2)
-      notification = create_notification(@topic.tag_id, @topic.lecture_id, @topic.id, @topic.class.name, I18n.t('topic.tag_topic.notification'))
-      if notification
-        current_user.update_column("user_status_id",2)
-        flash[:success] = I18n.t('topic.tag_topic.success')
-        redirect_to root_path
+    if check_quote_proposal(@topic.lecture_topic)
+      if @topic.update_attributes(:tag_id => current_user.id, :topic_status_id => 2)
+        notification = create_notification(@topic.tag_id, @topic.lecture_id, @topic.id, @topic.class.name, I18n.t('topic.tag_topic.notification'))
+        if notification
+          current_user.update_column("user_status_id",2)
+          flash[:success] = I18n.t('topic.tag_topic.success')
+          redirect_to root_path
+        end
+      else
+        redirect_to @topic, :flash => { :error => I18n.t('topic.tag_topic.error') }
       end
     else
-      redirect_to @topic, :flash => { :error => I18n.t('topic.tag_topic.error') }
+      redirect_to @topic, :flash => { :error => I18n.t('default.limit_quote_proposal') }
     end
   end
   

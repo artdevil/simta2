@@ -5,7 +5,8 @@ class CreateProposals < ActiveRecord::Migration
       t.integer :lecture_id
       t.integer :topic_id
       t.integer :progress, :null => false, :default => 0
-
+      t.integer :assistant_id
+      t.boolean :done, :null => false, :default => false
       t.timestamps
     end
   end

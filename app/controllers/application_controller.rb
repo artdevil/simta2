@@ -43,4 +43,14 @@ class ApplicationController < ActionController::Base
     return user
   end
   
+  def check_quote_proposal lecture
+    proposal = Proposal.where("lecture_id = '#{lecture.id}' or assistant_id = '#{lecture.id}' and done = '0'")
+#     if proposal.length < lecture.limit_proposal.to_i
+#       return true
+#     else
+#       return false
+#     end
+    return proposal.length < lecture.limit_proposal.to_i
+  end
+  
 end
