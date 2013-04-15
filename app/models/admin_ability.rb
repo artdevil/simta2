@@ -6,6 +6,9 @@ class AdminAbility
       can :manage, AdminUser
       can :manage, User
       can :manage, AdminConfig
+      can :manage, Document
+      can :manage, DocumentCategory
+      can :manage, News
     elsif user.user_type == "admin"
       
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413005913) do
+ActiveRecord::Schema.define(:version => 20130414235256) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(:version => 20130413005913) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "admin_attachments", :force => true do |t|
+    t.string   "attachment_name"
+    t.string   "admin_attachmentable_type"
+    t.integer  "admin_attachmentable_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "admin_configs", :force => true do |t|
     t.integer  "max_lecture_student_proposal"
@@ -94,6 +102,17 @@ ActiveRecord::Schema.define(:version => 20130413005913) do
     t.string  "contact_info"
   end
 
+  create_table "document_categories", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "documents", :force => true do |t|
+    t.string   "title"
+    t.integer  "document_category_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
   create_table "messages", :force => true do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
@@ -108,6 +127,13 @@ ActiveRecord::Schema.define(:version => 20130413005913) do
   end
 
   add_index "messages", ["ancestry"], :name => "index_messages_on_ancestry"
+
+  create_table "news", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "notifications", :force => true do |t|
     t.integer  "sender_id"

@@ -8,7 +8,7 @@
   %p
     %b Progress :
   .progress
-    .bar{:style => "width: #{10}%;"}= "#{@proposal.progress}%"
+    .bar{:style => "width: #{@proposal.progress}%;"}= "#{@proposal.progress}%"
   %p
     %b Total To do:
     = @proposal.todo_proposals.length
