@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_one :tag, :class_name => "Topic", :foreign_key => "tag_id"
   has_many :lecture_proposal, :class_name => "Proposal", :foreign_key => "lecture_id"
+  has_many :assistant_proposal, :class_name => "Proposal", :foreign_key => "assistant_id"
   has_one :student_proposal, :class_name => "Proposal", :foreign_key => "student_id"
   has_many :student_todo_proposals, :class_name => "TodoProposal", :foreign_key => "student_id"
   has_many :lecture_todo_proposals, :class_name => "TodoProposal", :foreign_key => "lecture_id"

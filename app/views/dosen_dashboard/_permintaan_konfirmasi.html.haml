@@ -12,3 +12,11 @@
             %p{:style => "width: 70px;"}
               = link_to "ya", approve_topic_path(f), :remote => true, :confirm => "apa anda yakin menerima konfirmasi ini ?", :class => "btn btn-primary btn-mini" 
               %a.btn.btn-danger.btn-mini tidak
+      - current_user.assistant_proposal.where("assistant_confirmation = 0").each do |f|
+        %tr{:id => "confirm_assistant_#{f.id}"}
+          %td= link_to f.topic.title, f.topic
+          %td= link_to "#{f.topic.tag.name} - assistant", "#", :class => "pop-over", :rel => "popover", "data-content" => "#{link_to 'lihat profile',user_profile_page_path(f.topic.tag)} <br> #{link_to 'kirim pesan', messages_path }"
+          %td
+            %p{:style => "width: 70px;"}
+              = link_to "ya", proposal_approve_dosen_assistant_proposal_path(f,:status => "yes"), :method => "PUT", :remote => true, :confirm => "apa anda yakin menerima konfirmasi ini ?", :class => "btn btn-primary btn-mini"
+              = link_to "tidak", proposal_approve_dosen_assistant_proposal_path(f,:status => "no"), :method => "PUT", :remote => true, :confirm => "apa anda yakin menolak konfirmasi ini ?", :class => "btn btn-danger btn-mini"  

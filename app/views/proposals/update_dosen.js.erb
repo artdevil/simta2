@@ -1,2 +1,2 @@
-$('#pembimbing2').html('<b>Pembimbing proposal II:</b> <%= @proposal.assistant.name %>');
+$('#pembimbing2').html('<b>Pembimbing proposal II:</b> <%= @proposal.assistant.name %> <%= "- menunggu konfirmasi" if @proposal.assistant_confirmation = 0 %>');
 $('.modal').modal('hide');

@@ -1,0 +1,9 @@
+<% if @status_confirm == "yes" %>
+  <% if @status_approve == true %>
+    $('#confirm_assistant_<%= @proposal.id %>').html('<td class="alert alert-success" colspan="3"><%= @proposal.topic.title %> berhasil dikonfirmasi</td>');
+  <% elsif @status_approve == false %>
+    $('#confirm_assistant_<%= @proposal.id %>').html('<td class="alert alert-error" colspan="3"><%= @proposal.topic.title %> kuota bimbingan anda penuh</td>');
+  <% end %>
+<% elsif @status_confirm == "no" %>
+  $('#confirm_assistant_<%= @proposal.id %>').html('<td class="alert alert-error" colspan="3"><%= @proposal.topic.title %> sudah di tolak</td>');
+<% end %>

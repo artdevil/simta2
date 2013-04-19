@@ -26,6 +26,7 @@ Simta2::Application.routes.draw do
     get :todo_finish, :on => :member
     get :dosen_proposal, :on => :collection
     put :update_dosen
+    put :approve_dosen_assistant_proposal
   end
   devise_for :users
   

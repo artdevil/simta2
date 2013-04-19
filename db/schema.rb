@@ -150,11 +150,12 @@ ActiveRecord::Schema.define(:version => 20130414235256) do
     t.integer  "student_id"
     t.integer  "lecture_id"
     t.integer  "topic_id"
-    t.integer  "progress",     :default => 0,     :null => false
+    t.integer  "progress",               :default => 0,     :null => false
     t.integer  "assistant_id"
-    t.boolean  "done",         :default => false, :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.boolean  "assistant_confirmation"
+    t.boolean  "done",                   :default => false, :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "taggings", :force => true do |t|

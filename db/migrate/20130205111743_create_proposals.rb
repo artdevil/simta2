@@ -6,6 +6,7 @@ class CreateProposals < ActiveRecord::Migration
       t.integer :topic_id
       t.integer :progress, :null => false, :default => 0
       t.integer :assistant_id
+      t.boolean :assistant_confirmation
       t.boolean :done, :null => false, :default => false
       t.timestamps
     end

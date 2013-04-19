@@ -81,15 +81,45 @@ class ProposalsController < ApplicationController
   end
 
   def dosen_proposal
-    @user = User.lecture_proposal(params[:term]).where("id != #{current_user.id}")
-    render json: @user.map(&:name)
+    @users = User.lecture_proposal(params[:term]).where("id != #{current_user.id}")
+    # render json: @user.map(&:name)
+    render json: @users.map{|user| "#{user.name}" if user.lecture_proposal.length < user.limit_proposal.to_i }
+  end
+  
+  def approve_dosen_assistant_proposal 
+    @proposal = Proposal.find_by_id_and_assistant_id(params[:proposal_id],current_user.id)
+    @status_approve = true
+    @status_confirm = params[:status]
+    if @status_confirm == "yes"
+      if check_quote_proposal(current_user)
+        if @proposal.update_attributes(:assistant_confirmation => true)
+          respond_to do |format|
+            format.js
+          end
+        end
+      else
+        @status_approve = false
+        respond_to do |format|
+          format.js
+        end
+      end
+    elsif @status_confirm == "no"
+      if @proposal.update_attributes(:assistant_id => nil, :assistant_confirmation => nil)
+        create_notification(current_user.id, @proposal.lecture_id, @proposal.id, @proposal.class.name, 'permintaan dosen pembimbing 2 ditolak')
+        create_notification(current_user.id, @proposal.student_id, @proposal.id, @proposal.class.name, 'permintaan dosen pembimbing 2 ditolak')
+        respond_to do |format|
+          format.js
+        end
+      end
+    end
   end
   
   def update_dosen
     user = User.find_by_name(params[:proposal]["assistant"])
     if user
       @proposal = current_user.lecture_proposal.find(params[:proposal_id])
-      if @proposal.update_attributes(:assistant_id => user.id)
+      if @proposal.update_attributes(:assistant_id => user.id, :assistant_confirmation => false)
+        create_notification(current_user.id, @proposal.assistant_id, @proposal.id, @proposal.class.name, '1 pesan konfirmasi bimbingan asisten proposal')
         respond_to do |format|
           format.js
         end
