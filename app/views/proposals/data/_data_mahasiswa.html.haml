@@ -15,7 +15,7 @@
     = f.student_proposal.lecture.name
   %p#pembimbing2
     %b Pembimbing proposal II:
-    = f.student_proposal.assistant ? "#{f.student_proposal.assistant.name} #{'- menunggu konfirmasi' if f.student_proposal.assistant_confirmation = 0}" : "#{link_to 'tambahkan dosen pembimbing', '#modalAddDosen',:data => {:toggle => 'modal'}}".html_safe
+    = f.student_proposal.assistant ? "#{f.student_proposal.assistant.name} #{'- menunggu konfirmasi' if f.student_proposal.assistant_confirmation == 0}" : "#{link_to 'tambahkan dosen pembimbing', '#modalAddDosen',:data => {:toggle => 'modal'}}".html_safe
   %p
     %b progress proposal
   .progress.progress-success

@@ -116,3 +116,19 @@ status_name = {
 (1..13).each do |i|
   TopicStatus.create(:description => "#{status_name[i]}")
 end
+
+# kabar berita
+(1..13).each do |i|
+  News.create(:title => "berita tes", :description => description)
+end
+
+#document category name
+document_category_name = {
+  1 => "dokumen proposal"
+  2 => "dokumen tugas akhir"
+}
+
+#documen category
+(1..2).each do |i|
+  DocumentCategory.create(:name => "#{document_category_name[i]}")
+end

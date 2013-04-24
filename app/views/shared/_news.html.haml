@@ -1,0 +1,14 @@
+.span9.dashboard-element
+  .navbar
+    .navbar-inner.custom
+      .brand-custom{"data-target" => "#bimbingan_proposal_table"} Kabar Berita
+  .dashboard-inner#kabar_berita
+    .row
+      #news.span9
+        = render :partial => "shared/news_partial", :locals => { :news => @news }
+    .row
+      .span9
+        = "show #{@news.offset_value + 1} - #{@news.offset_value + @news.length} of #{@news.total_count} results"
+        #news_paginate
+          = paginate @news, :params => {:controller => 'pages', :action => 'news'}, :remote => true
+    

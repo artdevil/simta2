@@ -4,6 +4,8 @@ Simta2::Application.routes.draw do
   root :to => 'pages#index'
   resources :pages do
     get :user_profile, :on => :member
+    get :news, :on => :collection
+    get :wiki, :on => :collection
   end
   resources :notifications do
     get :getnotification, :on => :collection

@@ -49,7 +49,7 @@
             <ul class="nav">
               <li <%= "class=active" if @tab == "1" %>><a href="/">Dashboard</a></li>
               <li <%= "class=active" if @tab == "2" %>><%= link_to "Cari judul", topics_path %></li>
-              <li <%= "class=active" if @tab == "3" %>><a href="#">Wiki</a></li>
+              <li <%= "class=active" if @tab == "3" %>><%= link_to "wiki", wiki_pages_path %></li>
               <li <%= "class=active" if @tab == "4" %>><a href="#">About</a></li>
             </ul>
             <form class="navbar-search pull-left" action="">

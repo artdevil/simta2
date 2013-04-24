@@ -1,0 +1,2 @@
+$('#news').html('<%= escape_javascript(render :partial => "shared/news_partial", :locals => { :news => @news }) %>');
+$('#news_paginate').html('<%= escape_javascript(paginate(@news, :params => {:controller => "pages", :action => "news"}, :remote => true).to_s) %>');

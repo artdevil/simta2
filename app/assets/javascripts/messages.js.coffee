@@ -17,3 +17,5 @@ jQuery ->
 jQuery -> 
   $("#new_message").click ->
     $("form[data-validate]").validate()
+jQuery ->
+  $('#menu_dosen li a').pjax('[data-pjax-container]')

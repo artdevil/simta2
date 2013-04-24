@@ -26,6 +26,7 @@ gem 'kaminari'
 gem "haml-rails"
 gem "friendly_id", "~> 4.0.9"
 gem 'remotipart','1.0.2'
+gem "rack-pjax"
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -6,6 +6,6 @@
           .brand-custom mahasiswa
       .dashboard-inner
         = simple_form_for Proposal.new, :url => data_mahasiswa_proposals_path, :method => "get", :remote => true do |f|
-          = f.input :student, :label => "pilih mahasiswa", :collection => Proposal.where("lecture_id = ? or assistant_id = ? ", current_user.id,current_user.id).map{|f| [f.student.name,f.student_id]}
+          = f.input :student, :label => "pilih mahasiswa", :collection => Proposal.where("lecture_id = #{current_user.id} or (assistant_id = #{current_user.id} and assistant_confirmation = 1)").map{|f| [f.student.name,f.student_id]}
       #data_mahasiswa
     #todo_mahasiswa

@@ -1,9 +1,28 @@
 .row
-  = render :partial => "dosen_dashboard/permintaan_konfirmasi"
-  = render :partial => "dosen_dashboard/judul_ta"
-.row
-  = render :partial => "dosen_dashboard/bimbingan_proposal"
-  .span6.dashboard-element
-    .navbar
-      .navbar-inner.custom
-        .brand-custom tes
+  .span3
+    %ul#menu_dosen.nav.nav-tabs.nav-stacked
+      %li{ 'class' => "#{'active' if !params[:page] or params[:page] == 'news' }" }
+        = link_to "Berita", root_path(:page => "news")
+      %li{ 'class' => "#{'active' if params[:page] == 'confirmation' }" }
+        = link_to "Permintaan Konfirmasi", root_path(:page => "confirmation")
+      %li{ 'class' => "#{'active' if params[:page] == 'topics' }" }
+        = link_to "Judul TA", root_path(:page => "topics")
+      %li{ 'class' => "#{'active' if params[:page] == 'proposal' }" }
+        = link_to "Bimbingan Proposal", root_path(:page => "proposal")
+  %div{:data => {"pjax-container" => true}}
+    - if !params[:page] or params[:page] == "news"
+      = render :partial => "shared/news"
+    - elsif params[:page] == "confirmation"
+      = render :partial => "dosen_dashboard/permintaan_konfirmasi"
+    - elsif params[:page] == "topics"
+      = render :partial => "dosen_dashboard/judul_ta"
+    - elsif params[:page] == "proposal"
+      = render :partial => "dosen_dashboard/bimbingan_proposal"
+/   = render :partial => "dosen_dashboard/permintaan_konfirmasi"
+/   = render :partial => "dosen_dashboard/judul_ta"
+/ .row
+/   = render :partial => "dosen_dashboard/bimbingan_proposal"
+/   .span6.dashboard-element
+/     .navbar
+/       .navbar-inner.custom
+/         .brand-custom tes

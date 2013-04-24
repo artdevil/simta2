@@ -1,0 +1,14 @@
+- news.each do |f|
+  .row.news_partial
+    .span9
+      %h3
+        = f.title
+      %p.subtitle
+        = "diterbitkan pada tanggal #{f.created_at.strftime("%d %B %Y")}"
+    .span9
+      = raw f.description
+    .span9.image_news
+      - f.admin_attachments.each do |n|
+        = link_to n.attachment_name.url, :target => "_blank" do
+          = image_tag(n.attachment_name.url)
+  %hr
